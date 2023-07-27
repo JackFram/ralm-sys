@@ -61,6 +61,7 @@ class CacheRetriever(object):
 
 
 def evaluate_logprob_with_retrieved_docs(
+        args,
         model,
         tokenizer,
         retriever,
@@ -113,6 +114,8 @@ def evaluate_logprob_with_retrieved_docs(
     while input_ids.shape[1] - query_len <  max_new_token_num and tokenizer.eos_token_id not in input_ids[0]:
 
         if doc_text is not None:
+            if not args.cache:
+                cache_retriever.reset()
             encoded_retrieved_text = tokenizer.encode(doc_text, max_length=retrieval_max_length, truncation=True, return_tensors="pt")
             cache_retriever.add_item(doc_text, doc_fet)
             # print(doc_text[:30])
@@ -122,16 +125,18 @@ def evaluate_logprob_with_retrieved_docs(
             # input_ids[doc_id, :len(encoded_retrieved_text)] = torch.tensor(encoded_retrieved_text, device=device)
         spec_doc_list = []
         spec_doc_score_list = []
+        spec_token_num = 0
         with torch.no_grad():
             start_time = time()
             for i in range(spec_step):
                 input_ids = torch.cat([encoded_retrieved_text.to(device), input_ids], dim=1)
                 query_start_idx = encoded_retrieved_text.shape[1]
                 intend_gen_len = max_new_token_num - (input_ids.shape[1] - query_start_idx - query_len)
-                spec_token_num = min(intend_gen_len, stride)
-                output = model.generate(input_ids, max_new_tokens=spec_token_num)
+                cur_spec_token_num = min(intend_gen_len, stride)
+                spec_token_num += cur_spec_token_num
+                output = model.generate(input_ids, max_new_tokens=cur_spec_token_num)
                 input_ids = output[[0], query_start_idx:]
-                if spec_token_num <= stride and input_ids.shape[1] - query_len >= max_new_token_num:
+                if input_ids.shape[1] - query_len >= max_new_token_num:
                     break
                 query_text = tokenizer.decode(input_ids[0, -32:])
                 # print(f"query batch in specret: {query_text}")
@@ -171,6 +176,11 @@ def evaluate_logprob_with_retrieved_docs(
 
         spec_end_loc = orig_len
 
+        # print(orig_len)
+        # print(len(spec_doc_list))
+        # print(input_ids.shape[1])
+        # print(input_ids.shape[1]-query_len)
+
         match_len = 0
 
         # print("*" * 50)
@@ -179,7 +189,7 @@ def evaluate_logprob_with_retrieved_docs(
         #     print(item)
         # print("*" * 50)
 
-        for i in range(spec_step):
+        for i in range(len(spec_doc_list)):
             match_len += 1
             spec_end_loc += stride
             if spec_end_loc > input_ids.shape[1]:
@@ -221,6 +231,7 @@ def evaluate_logprob_with_retrieved_docs(
 
 
 def eval_dataset(
+        args,
         model,
         tokenizer,
         retriever,
@@ -272,13 +283,13 @@ def eval_dataset(
         #     idx += 1
         #     continue
 
-        if idx > 50:
+        if idx > 100:
             break
 
         if retriever is not None:
 
             total_latency, inference_latency, retrieval_latency = evaluate_logprob_with_retrieved_docs(
-                model, tokenizer, retriever, device, encodings, begin_loc, end_loc,
+                args, model, tokenizer, retriever, device, encodings, begin_loc, end_loc,
                 ranking_strategy=ranking_strategy,
                 num_tokens_to_rank=num_tokens_to_rank_logprob,
                 retrieval_max_length=retrieval_max_length,
@@ -370,6 +381,7 @@ def main(args):
     #         retrieval_dataset = json.load(f)
 
     eval_dataset(
+        args,
         model,
         tokenizer,
         retriever,
@@ -409,6 +421,7 @@ if __name__ == '__main__':
 
     # retrieval params
     parser.add_argument("--retriever", action="store_true")
+    parser.add_argument("--cache", action="store_true")
     parser.add_argument("--retrieved_max_length", type=int, default=256)
     parser.add_argument("--ranking_strategy", type=str, choices=["first", "logprob", "oracle", "random"], default="first")
     parser.add_argument("--num_docs_to_rank", type=int, default=1)
