@@ -84,10 +84,17 @@ def evaluate_logprob_with_retrieved_docs(
     cache_retriever = CacheRetriever(encoder=retriever.searcher.query_encoder)
 
     # add retrieval here
+    # latency
     retrieval_latency = 0
     inference_latency = 0
 
+    # verification
+    total_speculated = 0
+    total_verified = 0
+    total_rejected = 0
+
     # retrieve initial doc
+    # TODO retrieve top k
     start_time = time()
     retrieved_item = retriever.retrieve(tokenizer.batch_decode(input_ids[[0], -32:], skip_special_tokens=True), k=num_docs)[0]
     retrieval_latency += time() - start_time
@@ -97,6 +104,7 @@ def evaluate_logprob_with_retrieved_docs(
     # exit(0)
 
     # extract info from doc
+    # TODO extract from top k
     if len(retrieved_item["retrieved_docs"]) == 0:
         doc_text = None
         doc_fet = None
@@ -117,6 +125,7 @@ def evaluate_logprob_with_retrieved_docs(
     while input_ids.shape[1] - query_len <  max_new_token_num and tokenizer.eos_token_id not in input_ids[0]:
 
         # add verified doc to cache
+        # TODO add top k, while noting top 1 for generation
         if doc_text is not None:
             if not args.cache:
                 cache_retriever.reset()
@@ -157,6 +166,7 @@ def evaluate_logprob_with_retrieved_docs(
                 if spec_doc_text is not None:
                     encoded_retrieved_text = tokenizer.encode(spec_doc_text, max_length=retrieval_max_length,
                                                               truncation=True, return_tensors="pt")
+                total_speculated += 1
             single_step_infer_lat = time() - start_time
             # print(f"single step inference latency: {single_step_infer_lat}")
             inference_latency += single_step_infer_lat
@@ -178,6 +188,7 @@ def evaluate_logprob_with_retrieved_docs(
             query_batch.append(d)
 
         # retrieve ground truth docs
+        # TODO retrieve top k or top 1
         start_time = time()
         batch_query_text = tokenizer.batch_decode(torch.stack(query_batch, dim=0), skip_special_tokens=True)
         retrieved_batch = retriever.retrieve(batch_query_text, k=num_docs)
@@ -214,6 +225,7 @@ def evaluate_logprob_with_retrieved_docs(
                 break
 
             # extract info from ground truth doc
+            # TODO extract from top k if top k retrieved
             if len(retrieved_batch[i]["retrieved_docs"]) == 0:
                 gt_doc_text = None
                 gt_doc_fet = None
@@ -236,7 +248,11 @@ def evaluate_logprob_with_retrieved_docs(
                 
                 # print("Speculation failed")
                 # print(spec_doc_list[i], gt_doc_text)
+                total_rejected += 1
                 break
+            else:
+                # speculation succeeded
+                total_verified += 1
 
         # use last ground truth document in next generation iteration
         doc_text = gt_doc_text
@@ -248,8 +264,9 @@ def evaluate_logprob_with_retrieved_docs(
     total_latency = retrieval_latency + inference_latency
     # print(input_ids[0, query_len:])
     print(
-        f"Total Latency: {total_latency}, Inference Latency: {inference_latency}, Retrieval Latency: {retrieval_latency},"
-        f"Infer Time: {infer_time}, Retrieval Time: {ret_time}")
+        f"Total Latency: {total_latency}, Inference Latency: {inference_latency}, Retrieval Latency: {retrieval_latency}, "
+        f"Infer Time: {infer_time}, Retrieval Time: {ret_time}, "
+        f"Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
     return total_latency, inference_latency, retrieval_latency
 
 
