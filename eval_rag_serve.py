@@ -87,6 +87,7 @@ def evaluate_logprob_with_retrieved_docs(
     retrieval_latency = 0
     inference_latency = 0
 
+    # retrieve initial doc
     start_time = time()
     retrieved_item = retriever.retrieve(tokenizer.batch_decode(input_ids[[0], -32:], skip_special_tokens=True), k=num_docs)[0]
     retrieval_latency += time() - start_time
@@ -95,6 +96,7 @@ def evaluate_logprob_with_retrieved_docs(
     # print(retriever.searcher.index.metric_type)
     # exit(0)
 
+    # extract info from doc
     if len(retrieved_item["retrieved_docs"]) == 0:
         doc_text = None
         doc_fet = None
@@ -111,8 +113,10 @@ def evaluate_logprob_with_retrieved_docs(
     ret_time = 1
     infer_time = 0
 
+    # GENERATION LOOP
     while input_ids.shape[1] - query_len <  max_new_token_num and tokenizer.eos_token_id not in input_ids[0]:
 
+        # add verified doc to cache
         if doc_text is not None:
             if not args.cache:
                 cache_retriever.reset()
@@ -126,9 +130,12 @@ def evaluate_logprob_with_retrieved_docs(
         spec_doc_list = []
         spec_doc_score_list = []
         spec_token_num = 0
+
+        # SPECULATION
         with torch.no_grad():
             start_time = time()
             for i in range(spec_step):
+                # this generation step
                 input_ids = torch.cat([encoded_retrieved_text.to(device), input_ids], dim=1)
                 query_start_idx = encoded_retrieved_text.shape[1]
                 intend_gen_len = max_new_token_num - (input_ids.shape[1] - query_start_idx - query_len)
@@ -137,9 +144,12 @@ def evaluate_logprob_with_retrieved_docs(
                 output = model.generate(input_ids, max_new_tokens=cur_spec_token_num)
                 input_ids = output[[0], query_start_idx:]
                 if input_ids.shape[1] - query_len >= max_new_token_num:
+                    # early break for exceeding token limit
                     break
                 query_text = tokenizer.decode(input_ids[0, -32:])
                 # print(f"query batch in specret: {query_text}")
+
+                # speculate doc for next generation step
                 spec_doc_text = cache_retriever.get_top_n(query_text)[0]
                 spec_doc_score = cache_retriever.get_score(query_text)
                 spec_doc_score_list.append(spec_doc_score)
@@ -153,10 +163,13 @@ def evaluate_logprob_with_retrieved_docs(
             infer_time += 1
 
         if spec_token_num <= stride and input_ids.shape[1] - query_len >= max_new_token_num:
+            # early break if only generation was with verified document
             break
 
         query_batch = []
 
+        # VERIFICATION
+        # generate queries for obtaining ground truth docs
         for i in range(spec_step):
             target_loc = orig_len + stride * (i+1)
             if target_loc > input_ids.shape[1]:
@@ -164,6 +177,7 @@ def evaluate_logprob_with_retrieved_docs(
             d = input_ids[0, target_loc-32: target_loc]
             query_batch.append(d)
 
+        # retrieve ground truth docs
         start_time = time()
         batch_query_text = tokenizer.batch_decode(torch.stack(query_batch, dim=0), skip_special_tokens=True)
         retrieved_batch = retriever.retrieve(batch_query_text, k=num_docs)
@@ -189,12 +203,17 @@ def evaluate_logprob_with_retrieved_docs(
         #     print(item)
         # print("*" * 50)
 
+        # verify speculated docs
         for i in range(len(spec_doc_list)):
+            # advance first as first stride is known to be verified
             match_len += 1
             spec_end_loc += stride
             if spec_end_loc > input_ids.shape[1]:
+                # early stop for EOS or generation limit
                 spec_end_loc = input_ids.shape[1]
                 break
+
+            # extract info from ground truth doc
             if len(retrieved_batch[i]["retrieved_docs"]) == 0:
                 gt_doc_text = None
                 gt_doc_fet = None
@@ -213,9 +232,13 @@ def evaluate_logprob_with_retrieved_docs(
             #
             #     # print(f"cache doc: {cache_retriever.corpus[idx][:30]}, score: {spec_doc_score_list[i][idx]}")
             if spec_doc_list[i] != gt_doc_text:
+                # speculation failed, stop verification
+                
                 # print("Speculation failed")
                 # print(spec_doc_list[i], gt_doc_text)
                 break
+
+        # use last ground truth document in next generation iteration
         doc_text = gt_doc_text
         doc_fet = gt_doc_fet
         input_ids = input_ids[[0], :spec_end_loc]
