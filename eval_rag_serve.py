@@ -350,7 +350,7 @@ def eval_dataset(
         #     idx += 1
         #     continue
 
-        if idx > 100:
+        if idx > 50:
             break
 
         if retriever is not None:
@@ -489,7 +489,7 @@ if __name__ == '__main__':
     # retrieval params
     parser.add_argument("--retriever", action="store_true")
     parser.add_argument("--cache", action="store_true")
-    parser.add_argument("--cache_update_width", type=int, degault=1)
+    parser.add_argument("--cache_update_width", type=int, default=1)
     parser.add_argument("--retrieval_always_wide", action="store_true")
     parser.add_argument("--retrieved_max_length", type=int, default=256)
     parser.add_argument("--ranking_strategy", type=str, choices=["first", "logprob", "oracle", "random"], default="first")
