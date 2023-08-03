@@ -11,4 +11,5 @@ nohup python -u eval_rag_serve.py \
 --retriever \
 --cache \
 --cache_update_width 1 \
+--retrieval_always_wide \
 > caching.out &

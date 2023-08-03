@@ -11,4 +11,5 @@ nohup python -u eval_rag_serve.py \
 --retriever \
 --cache \
 --cache_update_width 2 \
-> prefetching.out &
+--retrieval_always_wide \
+> prefetching_always_wide.out &
