@@ -83,7 +83,6 @@ def evaluate_logprob_with_retrieved_docs(
 
     cache_retriever = CacheRetriever(encoder=retriever.searcher.query_encoder)
 
-    # add retrieval here
     # latency
     retrieval_latency = 0
     inference_latency = 0
@@ -97,33 +96,30 @@ def evaluate_logprob_with_retrieved_docs(
     update_retrieval_width = num_docs if not args.cache else args.cache_update_width
     verification_retrieval_width = num_docs if not args.cache or not args.retrieval_always_wide else args.cache_update_width
 
-    # retrieve initial doc
-    # TODO retrieve top k DONE
+    # print()
+    # print("Query:", tokenizer.batch_decode(input_ids[[0], -32:], skip_special_tokens=True)[0])
+
+    # retrieve initial docs
     start_time = time()
     retrieved_items = retriever.retrieve(tokenizer.batch_decode(input_ids[[0], -32:], skip_special_tokens=True), k=update_retrieval_width)[0]
     retrieval_latency += time() - start_time
-    # print(retriever.searcher.query_encoder.encode(tokenizer.batch_decode(input_ids[[0], -32:], skip_special_tokens=True))[:20])
-    # print(retrieval_latency)
-    # print(retriever.searcher.index.metric_type)
-    # exit(0)
 
-    # TODO extract top 1 info
+    # extract top 1
     doc_text = None
     doc_fet = None
     doc_score = None
-    if len(retrieved_items["retrieved_docs"]) > 0:
-        # scan for top 1
-        for i in range(len(retrieved_items["retrieved_docs"])):
-            retrieved_example = retrieved_items["retrieved_docs"][i]
-            
-            # new top 1
-            if doc_score is None or retrieved_example["score"] > doc_score:
-                doc_score = retrieved_example["score"]
-                doc_title = retrieved_example["title"] if "title" in retrieved_example else None
-                doc_text = retrieved_example["text"]
-                if doc_title:
-                    doc_text = doc_title + "\n" + doc_text
-                doc_fet = retrieved_example["feature"]
+
+    for i in range(len(retrieved_items["retrieved_docs"])):
+        retrieved_example = retrieved_items["retrieved_docs"][i]
+        
+        # new top 1
+        if doc_score is None or retrieved_example["score"] > doc_score:
+            doc_score = retrieved_example["score"]
+            doc_title = retrieved_example["title"] if "title" in retrieved_example else None
+            doc_text = retrieved_example["text"]
+            if doc_title:
+                doc_text = doc_title + "\n" + doc_text
+            doc_fet = retrieved_example["feature"]
 
     ret_time = 1
     infer_time = 0
@@ -131,9 +127,11 @@ def evaluate_logprob_with_retrieved_docs(
     # GENERATION LOOP
     while input_ids.shape[1] - query_len <  max_new_token_num and tokenizer.eos_token_id not in input_ids[0]:
 
-        # TODO add top k to cache DONE
+        # CACHE UPDATE
         if args.cache:
             for i in range(len(retrieved_items["retrieved_docs"])):
+                retrieved_example = retrieved_items["retrieved_docs"][i]
+
                 example_title = retrieved_example["title"] if "title" in retrieved_example else None
                 example_text = retrieved_example["text"]
                 if example_title:
@@ -147,20 +145,18 @@ def evaluate_logprob_with_retrieved_docs(
                 cache_retriever.reset()
             encoded_retrieved_text = tokenizer.encode(doc_text, max_length=retrieval_max_length, truncation=True, return_tensors="pt")
             cache_retriever.add_item(doc_text, doc_fet)
-            # print(doc_text[:30])
 
+        # SPECULATION
         orig_len = input_ids.shape[1]
-
-            # input_ids[doc_id, :len(encoded_retrieved_text)] = torch.tensor(encoded_retrieved_text, device=device)
         spec_doc_list = []
         spec_doc_score_list = []
         spec_token_num = 0
 
-        # SPECULATION
+        # model forward loop
         with torch.no_grad():
             start_time = time()
             for i in range(spec_step):
-                # this generation step
+                # generate this spculation step
                 input_ids = torch.cat([encoded_retrieved_text.to(device), input_ids], dim=1)
                 query_start_idx = encoded_retrieved_text.shape[1]
                 intend_gen_len = max_new_token_num - (input_ids.shape[1] - query_start_idx - query_len)
@@ -188,13 +184,12 @@ def evaluate_logprob_with_retrieved_docs(
             inference_latency += single_step_infer_lat
             infer_time += 1
 
+        # VERIFICATION
         if spec_token_num <= stride and input_ids.shape[1] - query_len >= max_new_token_num:
             # early break if only generation was with verified document
             break
 
         query_batch = []
-
-        # VERIFICATION
         # generate queries for obtaining ground truth docs
         for i in range(spec_step):
             target_loc = orig_len + stride * (i+1)
@@ -204,33 +199,20 @@ def evaluate_logprob_with_retrieved_docs(
             query_batch.append(d)
 
         # retrieve ground truth docs
-        # TODO retrieve top k or top 1 DONE
         start_time = time()
         batch_query_text = tokenizer.batch_decode(torch.stack(query_batch, dim=0), skip_special_tokens=True)
         retrieved_batch = retriever.retrieve(batch_query_text, k=verification_retrieval_width)
-        # print(f"query batch in verification: {batch_query_text}")
         single_step_ret_lat = time() - start_time
-        # print(f"number of query: {len(query_batch)}, single step retrieve latency: {single_step_ret_lat}")
         retrieval_latency += single_step_ret_lat
+        # print(f"query batch in verification: {batch_query_text}")
+        # print(f"number of query: {len(query_batch)}, single step retrieve latency: {single_step_ret_lat}")
 
         ret_time += 1
 
+        # verify speculated docs
         spec_end_loc = orig_len
-
-        # print(orig_len)
-        # print(len(spec_doc_list))
-        # print(input_ids.shape[1])
-        # print(input_ids.shape[1]-query_len)
-
         match_len = 0
 
-        # print("*" * 50)
-        # print("Cache:")
-        # for item in cache_retriever.corpus:
-        #     print(item)
-        # print("*" * 50)
-
-        # verify speculated docs
         for i in range(len(spec_doc_list)):
             # advance first as first stride is known to be verified
             match_len += 1
@@ -243,8 +225,7 @@ def evaluate_logprob_with_retrieved_docs(
             retrieved_items = retrieved_batch[i]
             current_query_text = batch_query_text[i]
 
-            # extract info from ground truth doc
-            # TODO obtain top 1 info from top k DONE
+            # extract top 1 from ground truth
             gt_doc_text = None
             gt_doc_fet = None
             gt_doc_score = None
@@ -259,22 +240,26 @@ def evaluate_logprob_with_retrieved_docs(
                     if gt_doc_title:
                         gt_doc_text = gt_doc_title + "\n" + gt_doc_text
 
-            # print(f"speculate doc: {spec_doc_list[i][:30]}, gt doc: {gt_doc_text[:30]}, gt score: {gt_doc_score}")
+            # print("Query:", current_query_text)
             # for idx in range(len(cache_retriever)):
-            #
-            #     # print(f"cache doc: {cache_retriever.corpus[idx][:30]}, score: {spec_doc_score_list[i][idx]}")
+            #     print(f"cache doc: {cache_retriever.corpus[idx][:30]}, score: {spec_doc_score_list[i][idx]}")
+            # print()
+            # print(spec_doc_list[i])
+            # print(gt_doc_text)
+
             if spec_doc_list[i] != gt_doc_text:
                 # speculation failed, stop verification
-                
-                # print("Speculation failed")
-                # print(spec_doc_list[i], gt_doc_text)
+                # print("FAILED")
+                # print(spec_doc_list[i])
+                # print(gt_doc_text)
                 total_rejected += 1
                 break
             else:
                 # speculation succeeded
+                # print("success")
                 total_verified += 1
 
-        # TODO: retrieve top k for cache if needed
+        # re-retrieve top k if needed
         if args.cache and not args.retrieval_always_wide:
             start_time = time()
             retrieved_items = retriever.retrieve([current_query_text], k=update_retrieval_width)[0]
