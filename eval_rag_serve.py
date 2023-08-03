@@ -95,7 +95,7 @@ def evaluate_logprob_with_retrieved_docs(
 
     # retrieval width
     update_retrieval_width = num_docs if not args.cache else args.cache_update_width
-    verification_retrieval_width = num_docs if not args.cache and not args.retrieval_always_wide else args.cache_update_width
+    verification_retrieval_width = num_docs if not args.cache or not args.retrieval_always_wide else args.cache_update_width
 
     # retrieve initial doc
     # TODO retrieve top k DONE
