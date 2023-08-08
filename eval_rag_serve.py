@@ -111,6 +111,15 @@ def evaluate_logprob_with_retrieved_docs(
 
     for i in range(len(retrieved_items["retrieved_docs"])):
         retrieved_example = retrieved_items["retrieved_docs"][i]
+
+        # update cache if always update cache
+        if args.always_update_cache:
+            example_title = retrieved_example["title"] if "title" in retrieved_example else None
+            example_text = retrieved_example["text"]
+            if example_title:
+                example_text = example_title + "\n" + example_text
+            example_fet = retrieved_example["feature"]
+            cache_retriever.add_item(example_text, example_fet)
         
         # new top 1
         if doc_score is None or retrieved_example["score"] > doc_score:
@@ -127,8 +136,8 @@ def evaluate_logprob_with_retrieved_docs(
     # GENERATION LOOP
     while input_ids.shape[1] - query_len <  max_new_token_num and tokenizer.eos_token_id not in input_ids[0]:
 
-        # CACHE UPDATE
-        if args.cache:
+        # only update last failed verification if not always update cache
+        if args.cache and not args.always_update_cache:
             for i in range(len(retrieved_items["retrieved_docs"])):
                 retrieved_example = retrieved_items["retrieved_docs"][i]
 
@@ -231,6 +240,15 @@ def evaluate_logprob_with_retrieved_docs(
             gt_doc_score = None
             for j in range(len(retrieved_items["retrieved_docs"])):
                 retrieved_example = retrieved_items["retrieved_docs"][j]
+
+                # update cache if always update cache
+                if args.always_update_cache:
+                    example_title = retrieved_example["title"] if "title" in retrieved_example else None
+                    example_text = retrieved_example["text"]
+                    if example_title:
+                        example_text = example_title + "\n" + example_text
+                    example_fet = retrieved_example["feature"]
+                    cache_retriever.add_item(example_text, example_fet)
                 
                 if gt_doc_score is None or retrieved_example["score"] > gt_doc_score:
                     gt_doc_title = retrieved_example["title"] if "title" in retrieved_example else None
@@ -475,6 +493,7 @@ if __name__ == '__main__':
     parser.add_argument("--retriever", action="store_true")
     parser.add_argument("--cache", action="store_true")
     parser.add_argument("--cache_update_width", type=int, default=1)
+    parser.add_argument("--always_update_cache", action="store_true")
     parser.add_argument("--retrieval_always_wide", action="store_true")
     parser.add_argument("--retrieved_max_length", type=int, default=256)
     parser.add_argument("--ranking_strategy", type=str, choices=["first", "logprob", "oracle", "random"], default="first")
