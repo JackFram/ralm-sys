@@ -404,7 +404,7 @@ def main(args):
         if not os.path.isdir(args.output_dir):
             os.makedirs(args.output_dir)
     print_args(args, output_dir=args.output_dir)
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = "cuda:0" if torch.cuda.is_available() else "cpu"
     device_count = torch.cuda.device_count()
     data_parallel = device_count > 1 and not args.model_parallelism and args.retriever and \
                     args.ranking_strategy in ["logprob", "oracle"]
