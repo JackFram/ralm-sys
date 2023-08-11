@@ -296,6 +296,7 @@ def evaluate_logprob_with_retrieved_docs(
     print(
         f"Total Latency: {total_latency}, Inference Latency: {inference_latency}, Retrieval Latency: {retrieval_latency}, "
         f"Infer Time: {infer_time}, Retrieval Time: {ret_time}, "
+        f"Final Cache Size: {len(cache_retriever)}, "
         f"Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
     return total_latency, inference_latency, retrieval_latency
 
