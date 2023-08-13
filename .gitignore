@@ -1,0 +1,6 @@
+.idea/*
+*.pdf
+*.key
+results/*
+__pycache__/
+*.out
