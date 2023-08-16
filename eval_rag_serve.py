@@ -21,6 +21,7 @@ from ralm.retrievers.retrieval_factory import add_retriever_args, get_retriever
 RETRIEVAL_TYPES = [
     "dense",
     "sparse",
+    "dense_hnsw",
 ]
 
 class CacheRetriever(object):
