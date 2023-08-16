@@ -5,8 +5,8 @@ nohup python -u eval_rag_serve.py \
 --dataset_split validation \
 --output_dir ./results \
 --stride 4 \
---spec_step 4 \
+--spec_step 1 \
 --retrieval_type dense \
 --max_length 512 \
 --retriever \
-> speculation.out &
+> ~/ralm-sys/exact_retrieval/baseline.out &

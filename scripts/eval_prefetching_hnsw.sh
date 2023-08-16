@@ -6,10 +6,11 @@ nohup python -u eval_rag_serve.py \
 --output_dir ./results \
 --stride 4 \
 --spec_step 4 \
---retrieval_type dense \
+--retrieval_type dense_hnsw \
 --max_length 512 \
 --retriever \
 --cache \
---cache_update_width 1 \
+--cache_update_width 4 \
 --retrieval_always_wide \
-> caching.out &
+--always_update_cache \
+> ~/ralm-sys/approx_retrieval/approx_prefetching_always_wide_4.out &

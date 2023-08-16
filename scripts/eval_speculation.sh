@@ -9,7 +9,4 @@ nohup python -u eval_rag_serve.py \
 --retrieval_type dense \
 --max_length 512 \
 --retriever \
---cache \
---cache_update_width 2 \
---retrieval_always_wide \
-> prefetching_always_wide.out &
+> ~/ralm-sys/exact_retrieval/speculation.out &
