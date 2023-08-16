@@ -5,12 +5,8 @@ nohup python -u eval_rag_serve.py \
 --dataset_split validation \
 --output_dir ./results \
 --stride 4 \
---spec_step 4 \
---retrieval_type dense \
+--spec_step 1 \
+--retrieval_type dense_hnsw \
 --max_length 512 \
 --retriever \
---cache \
---cache_update_width 256 \
---retrieval_always_wide \
---always_update_cache \
-> ~/ralm-sys/exact_retrieval/verify_256.out &
+> ~/ralm-sys/approx_retrieval/baseline.out &

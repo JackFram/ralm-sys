@@ -13,4 +13,4 @@ nohup python -u eval_rag_serve.py \
 --cache_update_width 4 \
 --retrieval_always_wide \
 --always_update_cache \
-> ~/ralm-sys/approx_retrieval/approx_prefetching_always_wide_4.out &
+> ~/ralm-sys/approx_retrieval/approx_prefetching_4.out &
