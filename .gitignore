@@ -1,4 +1,5 @@
 results/*
 __pycache__/
+wikipedia-dpr-hnsw/*
 
 *.out
