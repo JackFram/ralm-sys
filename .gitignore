@@ -1,5 +1,8 @@
 results/*
 __pycache__/
 wikipedia-dpr-hnsw/*
-
+.idea/*
+*.pdf
+*.key
 *.out
+

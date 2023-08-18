@@ -265,9 +265,13 @@ def evaluate_logprob_with_retrieved_docs(
             # print()
             # print(spec_doc_list[i])
             # print(gt_doc_text)
+
             # print(np.max(spec_doc_score_list[i]), gt_doc_score)
             # if spec_doc_list[i] != gt_doc_text:
-            if np.max(spec_doc_score_list[i]) - gt_doc_score < -0.01:
+            # if np.max(spec_doc_score_list[i]) - gt_doc_score < -0.01:
+
+            if spec_doc_list[i] != gt_doc_text:
+
                 # speculation failed, stop verification
                 # print("FAILED")
                 # print(spec_doc_list[i])
