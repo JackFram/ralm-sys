@@ -52,4 +52,4 @@ CUDA_VISIBLE_DEVICES=1 nohup python -u eval_rag_serve.py \
 --max_length 512 \
 --retriever \
 --cache \
-> cache-dense-4.out &
+> ~/ralm-sys/exact_retrieval/cache-dense-4.out &

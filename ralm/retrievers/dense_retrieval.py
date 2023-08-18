@@ -8,26 +8,25 @@ import time
 
 
 class DenseRetriever(BaseRetriever):
-    def __init__(self, index_name, encoder_name, num_tokens_for_query, forbidden_titles_path):
+    def __init__(self, index_name, encoder_name, num_tokens_for_query, forbidden_titles_path, sparse_index_name=None):
         super(DenseRetriever, self).__init__()
-        self.searcher = self._get_searcher(index_name, encoder_name)
+        self.searcher = self._get_searcher(index_name, encoder_name, sparse_index_name)
         self.num_tokens_for_query = num_tokens_for_query
 
         self.forbidden_titles = self._get_forbidden_titles(forbidden_titles_path)
 
-    def _get_searcher(self, index_name, encoder_name):
-        try:
-            print(f"Attempting to download the index as if prebuilt by pyserini")
-            encoder = DprQueryEncoder(encoder_name)
-            searcher = FaissSearcher.from_prebuilt_index(
-                index_name,
-                encoder
-            )
-            return searcher
-        except ValueError:
+    def _get_searcher(self, index_name, encoder_name, sparse_index_name=None):
+        print(f"Attempting to download the index as if prebuilt by pyserini")
+        encoder = DprQueryEncoder(encoder_name)
+        searcher = FaissSearcher.from_prebuilt_index(
+            index_name,
+            encoder
+        )
+        if searcher is None:
             print(f"Index does not exist in pyserini.")
             print("Attempting to treat the index as a directory (not prebuilt by pyserini)")
-            raise ValueError
+            searcher = FaissSearcher(index_name, encoder, prebuilt_index_name=sparse_index_name)
+        return searcher
 
     def _get_forbidden_titles(self, forbidden_titles_path):
         if forbidden_titles_path is None:

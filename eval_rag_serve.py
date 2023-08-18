@@ -21,6 +21,7 @@ from ralm.retrievers.retrieval_factory import add_retriever_args, get_retriever
 RETRIEVAL_TYPES = [
     "dense",
     "sparse",
+    "dense_hnsw",
 ]
 
 class CacheRetriever(object):
@@ -265,7 +266,12 @@ def evaluate_logprob_with_retrieved_docs(
             # print(spec_doc_list[i])
             # print(gt_doc_text)
 
+            # print(np.max(spec_doc_score_list[i]), gt_doc_score)
+            # if spec_doc_list[i] != gt_doc_text:
+            # if np.max(spec_doc_score_list[i]) - gt_doc_score < -0.01:
+
             if spec_doc_list[i] != gt_doc_text:
+
                 # speculation failed, stop verification
                 # print("FAILED")
                 # print(spec_doc_list[i])
@@ -296,6 +302,7 @@ def evaluate_logprob_with_retrieved_docs(
     print(
         f"Total Latency: {total_latency}, Inference Latency: {inference_latency}, Retrieval Latency: {retrieval_latency}, "
         f"Infer Time: {infer_time}, Retrieval Time: {ret_time}, "
+        f"Final Cache Size: {len(cache_retriever)}, "
         f"Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
     return total_latency, inference_latency, retrieval_latency
 
@@ -353,7 +360,7 @@ def eval_dataset(
         #     idx += 1
         #     continue
 
-        if idx > 100:
+        if idx > 50:
             break
 
         if retriever is not None:
@@ -403,7 +410,7 @@ def main(args):
         if not os.path.isdir(args.output_dir):
             os.makedirs(args.output_dir)
     print_args(args, output_dir=args.output_dir)
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = "cuda:0" if torch.cuda.is_available() else "cpu"
     device_count = torch.cuda.device_count()
     data_parallel = device_count > 1 and not args.model_parallelism and args.retriever and \
                     args.ranking_strategy in ["logprob", "oracle"]
