@@ -5,4 +5,4 @@ wikipedia-dpr-hnsw/*
 *.pdf
 *.key
 *.out
-
+*.numbers
