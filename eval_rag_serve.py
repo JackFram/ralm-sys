@@ -177,7 +177,7 @@ def evaluate_logprob_with_retrieved_docs(
                 # for _ in range(cur_spec_token_num):
                 #     input_ids = model.generate(input_ids, max_new_tokens=1)
                 # output = input_ids
-                output = model.generate(input_ids, max_new_tokens=cur_spec_token_num, verify=False)
+                output = model.generate(input_ids, max_new_tokens=cur_spec_token_num, verify=False, retriever=retriever)
                 input_ids = output[[0], query_start_idx:]
                 if input_ids.shape[1] - query_len >= max_new_token_num:
                     # early break for exceeding token limit
@@ -416,7 +416,7 @@ def main(args):
         if not os.path.isdir(args.output_dir):
             os.makedirs(args.output_dir)
     print_args(args, output_dir=args.output_dir)
-    device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    device = "cuda:1" if torch.cuda.is_available() else "cpu"
     device_count = torch.cuda.device_count()
     data_parallel = device_count > 1 and not args.model_parallelism and args.retriever and \
                     args.ranking_strategy in ["logprob", "oracle"]

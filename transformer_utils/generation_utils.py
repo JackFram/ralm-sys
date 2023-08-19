@@ -22,7 +22,9 @@ from typing import Any, Callable, Dict, Iterable, List, Optional, Tuple, Union
 import torch
 import torch.distributed as dist
 from torch import nn
+from multiprocessing import Pool
 import threading
+import time
 
 class TimeoutError(RuntimeError):
     pass
@@ -1057,6 +1059,7 @@ class GenerationMixin:
         begin_suppress_tokens: Optional[List[int]] = None,
         forced_decoder_ids: Optional[List[List[int]]] = None,
         verify: Optional[bool] = False,
+        retriever=None,
         **model_kwargs,
     ) -> Union[GenerateOutput, torch.LongTensor]:
         r"""
@@ -1541,6 +1544,7 @@ class GenerationMixin:
                 return_dict_in_generate=return_dict_in_generate,
                 synced_gpus=synced_gpus,
                 verify=verify,
+                retriever=retriever,
                 **model_kwargs,
             )
 
@@ -2141,6 +2145,7 @@ class GenerationMixin:
         return_dict_in_generate: Optional[bool] = None,
         synced_gpus: Optional[bool] = False,
         verify: Optional[bool] = False,
+        retriever = None,
         **model_kwargs,
     ) -> Union[GreedySearchOutput, torch.LongTensor]:
         r"""
@@ -2224,6 +2229,7 @@ class GenerationMixin:
         ["It might be possible to get a better understanding of the nature of the problem, but it's not"]
         ```"""
         # init values
+        overall_start_time = time.time()
         logits_processor = logits_processor if logits_processor is not None else LogitsProcessorList()
         stopping_criteria = stopping_criteria if stopping_criteria is not None else StoppingCriteriaList()
         if max_length is not None:
@@ -2261,7 +2267,20 @@ class GenerationMixin:
         unfinished_sequences = input_ids.new(input_ids.shape[0]).fill_(1)
 
         this_peer_finished = False  # used by synced_gpus only
-        verify_flag = True
+
+
+        if verify:
+            assert retriever is not None
+
+            @Async
+            def fnc():
+                start_time = time.time()
+                ret = retriever.retrieve(["hello"], k=1)[0]
+                # time.sleep(0.06)
+                print(f"retrieval takes {time.time()-start_time}s")
+
+            fnc()
+
         while True:
             if synced_gpus:
                 # Under synced_gpus the `forward` call must continue until all gpus complete their sequence.
@@ -2277,20 +2296,14 @@ class GenerationMixin:
             model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
 
             # forward pass to get next token
-            if verify and verify_flag:
-
-                verify_flag = False
-
-                @Async
-                def fnc():
-                    pass
-
+            start_time = time.time()
             outputs = self(
                 **model_inputs,
                 return_dict=True,
                 output_attentions=output_attentions,
                 output_hidden_states=output_hidden_states,
             )
+            print(f"model forward 1 token takes {time.time()-start_time}s")
 
             if synced_gpus and this_peer_finished:
                 continue  # don't waste resources running the code we don't need
@@ -2343,6 +2356,8 @@ class GenerationMixin:
                     break
                 else:
                     this_peer_finished = True
+
+        print(f"overall latency: {time.time()-overall_start_time}")
 
         if return_dict_in_generate:
             if self.config.is_encoder_decoder:
