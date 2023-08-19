@@ -156,6 +156,8 @@ def evaluate_logprob_with_retrieved_docs(
             encoded_retrieved_text = tokenizer.encode(doc_text, max_length=retrieval_max_length, truncation=True, return_tensors="pt")
             cache_retriever.add_item(doc_text, doc_fet)
 
+        print(doc_text[:30])
+
         # SPECULATION
         orig_len = input_ids.shape[1]
         spec_doc_list = []
@@ -172,7 +174,10 @@ def evaluate_logprob_with_retrieved_docs(
                 intend_gen_len = max_new_token_num - (input_ids.shape[1] - query_start_idx - query_len)
                 cur_spec_token_num = min(intend_gen_len, stride)
                 spec_token_num += cur_spec_token_num
-                output = model.generate(input_ids, max_new_tokens=cur_spec_token_num)
+                # for _ in range(cur_spec_token_num):
+                #     input_ids = model.generate(input_ids, max_new_tokens=1)
+                # output = input_ids
+                output = model.generate(input_ids, max_new_tokens=cur_spec_token_num, verify=False)
                 input_ids = output[[0], query_start_idx:]
                 if input_ids.shape[1] - query_len >= max_new_token_num:
                     # early break for exceeding token limit
@@ -304,6 +309,7 @@ def evaluate_logprob_with_retrieved_docs(
         f"Infer Time: {infer_time}, Retrieval Time: {ret_time}, "
         f"Final Cache Size: {len(cache_retriever)}, "
         f"Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
+    exit(0)
     return total_latency, inference_latency, retrieval_latency
 
 
