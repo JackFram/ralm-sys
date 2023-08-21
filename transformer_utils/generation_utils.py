@@ -2229,7 +2229,7 @@ class GenerationMixin:
         ["It might be possible to get a better understanding of the nature of the problem, but it's not"]
         ```"""
         # init values
-        overall_start_time = time.time()
+        # overall_start_time = time.time()
         logits_processor = logits_processor if logits_processor is not None else LogitsProcessorList()
         stopping_criteria = stopping_criteria if stopping_criteria is not None else StoppingCriteriaList()
         if max_length is not None:
@@ -2269,17 +2269,17 @@ class GenerationMixin:
         this_peer_finished = False  # used by synced_gpus only
 
 
-        if verify:
-            assert retriever is not None
-
-            @Async
-            def fnc():
-                start_time = time.time()
-                ret = retriever.retrieve(["hello"], k=1)[0]
-                # time.sleep(0.06)
-                print(f"retrieval takes {time.time()-start_time}s")
-
-            fnc()
+        # if verify:
+        #     assert retriever is not None
+        #
+        #     @Async
+        #     def fnc():
+        #         start_time = time.time()
+        #         # ret = retriever.retrieve(["hello"], k=1)[0]
+        #         time.sleep(0.06)
+        #         print(f"retrieval takes {time.time()-start_time}s")
+        #
+        #     fnc()
 
         while True:
             if synced_gpus:
@@ -2296,14 +2296,14 @@ class GenerationMixin:
             model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
 
             # forward pass to get next token
-            start_time = time.time()
+            # start_time = time.time()
             outputs = self(
                 **model_inputs,
                 return_dict=True,
                 output_attentions=output_attentions,
                 output_hidden_states=output_hidden_states,
             )
-            print(f"model forward 1 token takes {time.time()-start_time}s")
+            # print(f"model forward 1 token takes {time.time()-start_time}s")
 
             if synced_gpus and this_peer_finished:
                 continue  # don't waste resources running the code we don't need
@@ -2357,7 +2357,7 @@ class GenerationMixin:
                 else:
                     this_peer_finished = True
 
-        print(f"overall latency: {time.time()-overall_start_time}")
+        # print(f"overall latency: {time.time()-overall_start_time}")
 
         if return_dict_in_generate:
             if self.config.is_encoder_decoder:

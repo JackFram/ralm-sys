@@ -13,7 +13,50 @@ from torch.nn import CrossEntropyLoss
 from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig
 from datasets import load_dataset
-from time import time
+import time
+import threading
+from multiprocessing import Pool
+
+class TimeoutError(RuntimeError):
+    pass
+
+class AsyncCall(object):
+    def __init__(self, fnc, callback = None):
+        self.Callable = fnc
+        self.Callback = callback
+
+    def __call__(self, *args, **kwargs):
+        self.Thread = threading.Thread(target = self.run, name = self.Callable.__name__, args = args, kwargs = kwargs)
+        self.Thread.start()
+        return self
+
+    def wait(self, timeout = None):
+        self.Thread.join(timeout)
+        if self.Thread.isAlive():
+            raise TimeoutError()
+        else:
+            return self.Result
+
+    def run(self, *args, **kwargs):
+        self.Result = self.Callable(*args, **kwargs)
+        if self.Callback:
+            self.Callback(self.Result)
+
+class AsyncMethod(object):
+    def __init__(self, fnc, callback=None):
+        self.Callable = fnc
+        self.Callback = callback
+
+    def __call__(self, *args, **kwargs):
+        return AsyncCall(self.Callable, self.Callback)(*args, **kwargs)
+
+def Async(fnc = None, callback = None):
+    if fnc == None:
+        def AddAsyncCallback(fnc):
+            return AsyncMethod(fnc, callback)
+        return AddAsyncCallback
+    else:
+        return AsyncMethod(fnc, callback)
 
 from ralm.file_utils import print_args
 from ralm.retrievers.retrieval_factory import add_retriever_args, get_retriever
@@ -87,6 +130,9 @@ def evaluate_logprob_with_retrieved_docs(
     # latency
     retrieval_latency = 0
     inference_latency = 0
+    async_retrieval_step_latency = 0
+    async_inference_step_latency = 0
+    latency_saved_by_async = 0
 
     # verification
     total_speculated = 0
@@ -101,9 +147,9 @@ def evaluate_logprob_with_retrieved_docs(
     # print("Query:", tokenizer.batch_decode(input_ids[[0], -32:], skip_special_tokens=True)[0])
 
     # retrieve initial docs
-    start_time = time()
+    start_time = time.time()
     retrieved_items = retriever.retrieve(tokenizer.batch_decode(input_ids[[0], -32:], skip_special_tokens=True), k=update_retrieval_width)[0]
-    retrieval_latency += time() - start_time
+    retrieval_latency += time.time() - start_time
 
     # extract top 1
     doc_text = None
@@ -133,6 +179,7 @@ def evaluate_logprob_with_retrieved_docs(
 
     ret_time = 1
     infer_time = 0
+    async_flag = False
 
     # GENERATION LOOP
     while input_ids.shape[1] - query_len <  max_new_token_num and tokenizer.eos_token_id not in input_ids[0]:
@@ -164,11 +211,12 @@ def evaluate_logprob_with_retrieved_docs(
         spec_doc_score_list = []
         spec_token_num = 0
 
-        # model forward loop
+
         with torch.no_grad():
-            start_time = time()
+            start_time = time.time()
             for i in range(spec_step):
                 # generate this spculation step
+
                 input_ids = torch.cat([encoded_retrieved_text.to(device), input_ids], dim=1)
                 query_start_idx = encoded_retrieved_text.shape[1]
                 intend_gen_len = max_new_token_num - (input_ids.shape[1] - query_start_idx - query_len)
@@ -177,7 +225,7 @@ def evaluate_logprob_with_retrieved_docs(
                 # for _ in range(cur_spec_token_num):
                 #     input_ids = model.generate(input_ids, max_new_tokens=1)
                 # output = input_ids
-                output = model.generate(input_ids, max_new_tokens=cur_spec_token_num, verify=False, retriever=retriever)
+                output = model.generate(input_ids, max_new_tokens=cur_spec_token_num)
                 input_ids = output[[0], query_start_idx:]
                 if input_ids.shape[1] - query_len >= max_new_token_num:
                     # early break for exceeding token limit
@@ -194,8 +242,13 @@ def evaluate_logprob_with_retrieved_docs(
                     encoded_retrieved_text = tokenizer.encode(spec_doc_text, max_length=retrieval_max_length,
                                                               truncation=True, return_tensors="pt")
                 total_speculated += 1
-            single_step_infer_lat = time() - start_time
-            # print(f"single step inference latency: {single_step_infer_lat}")
+                if args.async_retrieval and async_flag:
+                    async_inference_step_latency = time.time() - start_time
+                    latency_saved_by_async += min(async_retrieval_step_latency, async_inference_step_latency)
+                    async_flag = False
+
+            single_step_infer_lat = time.time() - start_time
+            print(f"single step inference latency: {single_step_infer_lat}")
             inference_latency += single_step_infer_lat
             infer_time += 1
 
@@ -214,10 +267,10 @@ def evaluate_logprob_with_retrieved_docs(
             query_batch.append(d)
 
         # retrieve ground truth docs
-        start_time = time()
+        start_time = time.time()
         batch_query_text = tokenizer.batch_decode(torch.stack(query_batch, dim=0), skip_special_tokens=True)
         retrieved_batch = retriever.retrieve(batch_query_text, k=verification_retrieval_width)
-        single_step_ret_lat = time() - start_time
+        single_step_ret_lat = time.time() - start_time
         retrieval_latency += single_step_ret_lat
         # print(f"query batch in verification: {batch_query_text}")
         # print(f"number of query: {len(query_batch)}, single step retrieve latency: {single_step_ret_lat}")
@@ -287,12 +340,15 @@ def evaluate_logprob_with_retrieved_docs(
                 # speculation succeeded
                 # print("success")
                 total_verified += 1
+                if args.async_retrieval and i == len(spec_doc_list)-1:
+                    async_retrieval_step_latency = single_step_ret_lat
+                    async_flag = True
 
         # re-retrieve top k if needed
         if args.cache and not args.retrieval_always_wide:
-            start_time = time()
+            start_time = time.time()
             retrieved_items = retriever.retrieve([current_query_text], k=update_retrieval_width)[0]
-            retrieval_latency += time() - start_time
+            retrieval_latency += time.time() - start_time
         
         # use last ground truth document in next generation iteration
         doc_text = gt_doc_text
@@ -302,13 +358,15 @@ def evaluate_logprob_with_retrieved_docs(
         # print(query_len, query_start_idx, input_ids.shape)
         # print(input_ids, tokenizer.eos_token_id in input_ids, input_ids.shape[1] - query_len)
         # print(f"stride being forwarded: {match_len}")
-    total_latency = retrieval_latency + inference_latency
+    total_latency = retrieval_latency + inference_latency - latency_saved_by_async
     # print(input_ids[0, query_len:])
     print(
-        f"Total Latency: {total_latency}, Inference Latency: {inference_latency}, Retrieval Latency: {retrieval_latency}, "
-        f"Infer Time: {infer_time}, Retrieval Time: {ret_time}, "
-        f"Final Cache Size: {len(cache_retriever)}, "
-        f"Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
+        f"Total Latency: {total_latency}, Inference Latency: {inference_latency}"
+        f", Retrieval Latency: {retrieval_latency}"
+        f", Latency Saved by Asynchronous Retrieval: {latency_saved_by_async}"
+        f", Infer Time: {infer_time}, Retrieval Time: {ret_time}"
+        f", Final Cache Size: {len(cache_retriever)}"
+        f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
     exit(0)
     return total_latency, inference_latency, retrieval_latency
 
@@ -512,6 +570,7 @@ if __name__ == '__main__':
     parser.add_argument("--ranking_strategy", type=str, choices=["first", "logprob", "oracle", "random"], default="first")
     parser.add_argument("--num_docs_to_rank", type=int, default=1)
     parser.add_argument("--ranking_logprob_past_tokens", type=int, default=16)
+    parser.add_argument("--async_retrieval", action="store_true")
 
     # Retrieval params
     parser.add_argument("--retrieval_type", required=True, choices=RETRIEVAL_TYPES)

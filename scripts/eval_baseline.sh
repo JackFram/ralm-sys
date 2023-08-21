@@ -9,4 +9,4 @@ nohup python -u eval_rag_serve.py \
 --retrieval_type dense \
 --max_length 512 \
 --retriever \
-> ~/ralm-sys/exact_retrieval/baseline.out &
+> exp_results/baseline.out &
