@@ -16,6 +16,7 @@ from datasets import load_dataset
 import time
 import threading
 from multiprocessing import Pool
+from utils import *
 
 class TimeoutError(RuntimeError):
     pass
@@ -134,6 +135,9 @@ def evaluate_logprob_with_retrieved_docs(
     async_inference_step_latency = 0
     latency_saved_by_async = 0
 
+    spec_step_list = []
+    match_length_list = []
+
     # verification
     total_speculated = 0
     total_verified = 0
@@ -180,6 +184,7 @@ def evaluate_logprob_with_retrieved_docs(
     ret_time = 1
     infer_time = 0
     async_flag = False
+    iteration = 0
 
     # GENERATION LOOP
     while input_ids.shape[1] - query_len <  max_new_token_num and tokenizer.eos_token_id not in input_ids[0]:
@@ -202,8 +207,8 @@ def evaluate_logprob_with_retrieved_docs(
                 cache_retriever.reset()
             encoded_retrieved_text = tokenizer.encode(doc_text, max_length=retrieval_max_length, truncation=True, return_tensors="pt")
             cache_retriever.add_item(doc_text, doc_fet)
-
-        print(doc_text[:30])
+        #
+        # print(doc_text[:30])
 
         # SPECULATION
         orig_len = input_ids.shape[1]
@@ -213,6 +218,7 @@ def evaluate_logprob_with_retrieved_docs(
 
 
         with torch.no_grad():
+            spec_step_list.append(spec_step)
             start_time = time.time()
             for i in range(spec_step):
                 # generate this spculation step
@@ -247,9 +253,10 @@ def evaluate_logprob_with_retrieved_docs(
                     latency_saved_by_async += min(async_retrieval_step_latency, async_inference_step_latency)
                     async_flag = False
 
-            single_step_infer_lat = time.time() - start_time
-            print(f"single step inference latency: {single_step_infer_lat}")
-            inference_latency += single_step_infer_lat
+            spec_step_infer_lat = time.time() - start_time
+            single_step_infer_lat = spec_step_infer_lat / spec_step
+            # print(f"spec step inference latency: {spec_step_infer_lat}")
+            inference_latency += spec_step_infer_lat
             infer_time += 1
 
         # VERIFICATION
@@ -283,7 +290,6 @@ def evaluate_logprob_with_retrieved_docs(
 
         for i in range(len(spec_doc_list)):
             # advance first as first stride is known to be verified
-            match_len += 1
             spec_end_loc += stride
             if spec_end_loc > input_ids.shape[1]:
                 # early stop for EOS or generation limit
@@ -339,10 +345,13 @@ def evaluate_logprob_with_retrieved_docs(
             else:
                 # speculation succeeded
                 # print("success")
+                match_len += 1
                 total_verified += 1
                 if args.async_retrieval and i == len(spec_doc_list)-1:
                     async_retrieval_step_latency = single_step_ret_lat
                     async_flag = True
+
+        match_length_list.append(match_len)
 
         # re-retrieve top k if needed
         if args.cache and not args.retrieval_always_wide:
@@ -355,6 +364,23 @@ def evaluate_logprob_with_retrieved_docs(
         doc_fet = gt_doc_fet
         doc_score = gt_doc_score
         input_ids = input_ids[[0], :spec_end_loc]
+
+        iteration += 1
+
+
+        '''
+        Adaptive speculation step optimization
+        '''
+        if args.adapt_spec_step and iteration > args.adapt_cold_start:
+            gamma = estimate_gamma(spec_step_list=spec_step_list[-args.gamma_window:], match_length_list=match_length_list[-args.gamma_window:])
+            # print(spec_step_list, match_length_list)
+            # print(single_step_infer_lat, single_step_ret_lat, gamma)
+            if args.async_retrieval:
+                spec_step = async_opt_step(a=single_step_infer_lat, b=single_step_ret_lat, gamma=gamma)
+            else:
+                spec_step = sync_opt_step(a=single_step_infer_lat, b=single_step_ret_lat, gamma=gamma)
+            # print(f"adapting speculation step to {spec_step}")
+
         # print(query_len, query_start_idx, input_ids.shape)
         # print(input_ids, tokenizer.eos_token_id in input_ids, input_ids.shape[1] - query_len)
         # print(f"stride being forwarded: {match_len}")
@@ -548,6 +574,9 @@ if __name__ == '__main__':
     # Model params
     parser.add_argument("--model_name", type=str, required=True)
     parser.add_argument("--max_length", type=int, default=None)
+    parser.add_argument("--adapt_spec_step", action="store_true")
+    parser.add_argument("--adapt_cold_start", type=int, default=1)
+    parser.add_argument("--gamma_window", type=int, default=5)
     parser.add_argument("--stride", type=int, default=4)
     parser.add_argument("--spec_step", type=int, default=1)
     parser.add_argument("--cache_dir", type=str, default=None)

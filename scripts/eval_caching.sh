@@ -6,10 +6,11 @@ nohup python -u eval_rag_serve.py \
 --output_dir ./results \
 --stride 4 \
 --spec_step 4 \
+--adapt_spec_step \
 --retrieval_type dense \
 --max_length 512 \
 --retriever \
 --cache \
 --cache_update_width 1 \
 --retrieval_always_wide \
-> ~/ralm-sys/exact_retrieval/caching.out &
+> exp_results/caching.out &

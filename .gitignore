@@ -1,4 +1,4 @@
-results/*
+exp_results/*
 __pycache__/
 wikipedia-dpr-hnsw/*
 .idea/*
@@ -6,3 +6,4 @@ wikipedia-dpr-hnsw/*
 *.key
 *.out
 *.numbers
+results/*
