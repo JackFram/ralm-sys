@@ -17,6 +17,7 @@ import time
 import threading
 from multiprocessing import Pool
 from utils import *
+# from rank_bm25 import BM25Okapi
 
 class TimeoutError(RuntimeError):
     pass
@@ -68,16 +69,17 @@ RETRIEVAL_TYPES = [
     "dense_hnsw",
 ]
 
-class CacheRetriever(object):
+class CacheDenseRetriever(object):
     def __init__(self, encoder=None):
         self.corpus = []
         self.features = []
         self.query_encoder = encoder
 
-    def add_item(self, item: str, feature):
+    def add_item(self, item: str, doc_info: dict):
+        assert "feature" in doc_info
         if item not in self.corpus:
             self.corpus.append(item)
-            self.features.append(feature)
+            self.features.append(doc_info["feature"])
 
     def get_top_n(self, query: str, n=1):
         q_fet = self.query_encoder.encode(query).reshape((1, -1))
@@ -105,6 +107,40 @@ class CacheRetriever(object):
         return len(self.corpus)
 
 
+class CacheSparseRetriever(object):
+    def __init__(self, retriever):
+        self.docids = []
+        self.corpus = []
+        self.retriever = retriever
+
+    def add_item(self, item: str, doc_info: dict):
+        assert "docid" in doc_info
+        if item not in self.corpus:
+            self.corpus.append(item)
+            self.docids.append(doc_info["docid"])
+
+    def get_top_n(self, query: str, n=1):
+        score = self.get_score(query)
+        ret_indices = np.argsort(score)[-n:]
+        ret = []
+        for ind in ret_indices:
+            ret.append(self.corpus[ind])
+        return ret
+
+    def reset(self):
+        self.docids = []
+        self.corpus = []
+
+    def get_score(self, query):
+        score_list = []
+        for docid in self.docids:
+            score_list.append(self.retriever.get_doc_query_score(docid=docid, query=query))
+        return score_list
+
+    def __len__(self):
+        return len(self.corpus)
+
+
 def evaluate_logprob_with_retrieved_docs(
         args,
         model,
@@ -126,7 +162,10 @@ def evaluate_logprob_with_retrieved_docs(
 
     query_len = end_loc - begin_loc
 
-    cache_retriever = CacheRetriever(encoder=retriever.searcher.query_encoder)
+    if args.retrieval_type == "sparse":
+        cache_retriever = CacheSparseRetriever(retriever)
+    else:
+        cache_retriever = CacheDenseRetriever(encoder=retriever.searcher.query_encoder)
 
     # latency
     retrieval_latency = 0
@@ -157,8 +196,9 @@ def evaluate_logprob_with_retrieved_docs(
 
     # extract top 1
     doc_text = None
-    doc_fet = None
+    # doc_fet = None
     doc_score = None
+    doc_to_cache = None
 
     for i in range(len(retrieved_items["retrieved_docs"])):
         retrieved_example = retrieved_items["retrieved_docs"][i]
@@ -169,8 +209,7 @@ def evaluate_logprob_with_retrieved_docs(
             example_text = retrieved_example["text"]
             if example_title:
                 example_text = example_title + "\n" + example_text
-            example_fet = retrieved_example["feature"]
-            cache_retriever.add_item(example_text, example_fet)
+            cache_retriever.add_item(example_text, retrieved_example)
         
         # new top 1
         if doc_score is None or retrieved_example["score"] > doc_score:
@@ -179,7 +218,7 @@ def evaluate_logprob_with_retrieved_docs(
             doc_text = retrieved_example["text"]
             if doc_title:
                 doc_text = doc_title + "\n" + doc_text
-            doc_fet = retrieved_example["feature"]
+            doc_to_cache = retrieved_example
 
     ret_time = 1
     infer_time = 0
@@ -198,15 +237,15 @@ def evaluate_logprob_with_retrieved_docs(
                 example_text = retrieved_example["text"]
                 if example_title:
                     example_text = example_title + "\n" + example_text
-                example_fet = retrieved_example["feature"]
-                cache_retriever.add_item(example_text, example_fet)
+                # example_fet = retrieved_example["feature"]
+                cache_retriever.add_item(example_text, retrieved_example)
 
         # encode top 1 and add to cache always
         if doc_text is not None:
             if not args.cache:
                 cache_retriever.reset()
             encoded_retrieved_text = tokenizer.encode(doc_text, max_length=retrieval_max_length, truncation=True, return_tensors="pt")
-            cache_retriever.add_item(doc_text, doc_fet)
+            cache_retriever.add_item(doc_text, doc_to_cache)
         #
         # print(doc_text[:30])
 
@@ -312,13 +351,13 @@ def evaluate_logprob_with_retrieved_docs(
                     example_text = retrieved_example["text"]
                     if example_title:
                         example_text = example_title + "\n" + example_text
-                    example_fet = retrieved_example["feature"]
-                    cache_retriever.add_item(example_text, example_fet)
+                    # example_fet = retrieved_example["feature"]
+                    cache_retriever.add_item(example_text, retrieved_example)
                 
                 if gt_doc_score is None or retrieved_example["score"] > gt_doc_score:
                     gt_doc_title = retrieved_example["title"] if "title" in retrieved_example else None
                     gt_doc_text = retrieved_example["text"]
-                    gt_doc_fet = retrieved_example["feature"]
+                    doc_to_cache = retrieved_example
                     gt_doc_score = retrieved_example["score"]
                     if gt_doc_title:
                         gt_doc_text = gt_doc_title + "\n" + gt_doc_text
@@ -354,15 +393,15 @@ def evaluate_logprob_with_retrieved_docs(
         match_length_list.append(match_len)
 
         # re-retrieve top k if needed
-        if args.cache and not args.retrieval_always_wide:
-            start_time = time.time()
-            retrieved_items = retriever.retrieve([current_query_text], k=update_retrieval_width)[0]
-            retrieval_latency += time.time() - start_time
+        # if args.cache and not args.retrieval_always_wide:
+        #     start_time = time.time()
+        #     retrieved_items = retriever.retrieve([current_query_text], k=update_retrieval_width)[0]
+        #     retrieval_latency += time.time() - start_time
         
         # use last ground truth document in next generation iteration
         doc_text = gt_doc_text
-        doc_fet = gt_doc_fet
-        doc_score = gt_doc_score
+        # doc_fet = gt_doc_fet
+        # doc_score = gt_doc_score
         input_ids = input_ids[[0], :spec_end_loc]
 
         iteration += 1
@@ -393,7 +432,9 @@ def evaluate_logprob_with_retrieved_docs(
         f", Infer Time: {infer_time}, Retrieval Time: {ret_time}"
         f", Final Cache Size: {len(cache_retriever)}"
         f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
+
     exit(0)
+
     return total_latency, inference_latency, retrieval_latency
 
 
@@ -443,15 +484,10 @@ def eval_dataset(
     sum_inference_latency = 0
     sum_retrieval_latency = 0
 
-    for begin_loc in tqdm(range(0, dataset_len, max_length)):
+    loc_list = list(range(0, dataset_len, max_length))[:100]
+
+    for begin_loc in tqdm(loc_list):
         end_loc = min(begin_loc + max_length, dataset_len)
-
-        # if idx not in [0, 1] :
-        #     idx += 1
-        #     continue
-
-        if idx > 50:
-            break
 
         if retriever is not None:
 
@@ -468,7 +504,7 @@ def eval_dataset(
             sum_latency += total_latency
             sum_inference_latency += inference_latency
             sum_retrieval_latency += retrieval_latency
-            print(f"Total Latency: {total_latency}, Inference Latency: {inference_latency}, Retrieval Latency: {retrieval_latency}")
+            # print(f"Total Latency: {total_latency}, Inference Latency: {inference_latency}, Retrieval Latency: {retrieval_latency}")
 
         else:
             input_ids = encodings.input_ids[:, begin_loc:end_loc].to(device)
@@ -486,12 +522,11 @@ def eval_dataset(
                 print(
                     f"Total Latency: {total_latency}, Inference Latency: {inference_latency}, Retrieval Latency: {retrieval_latency}")
 
-        prev_end_loc = end_loc
-        idx += 1
-        if end_loc == dataset_len:
-            break
+        # prev_end_loc = end_loc
+        # idx += 1
+        # if end_loc == dataset_len:
+        #     break
     # assert retrieval_dataset is None or len(retrieval_dataset) == idx
-
     print(f"Avg latency: {sum_latency/request_num:.2f} s, Avg Forward latency: {sum_inference_latency/request_num:.2f} s, Avg Retrieval latency: {sum_retrieval_latency/request_num:.2f} s")
 
 

@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5ae7ef6-4cfa-4dab-b93d-2a253ac312de" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/utils.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/run_gpt2.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eval_rag_serve.py" afterPath="$PROJECT_DIR$/eval_rag_serve.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ralm/retrievers/sparse_retrieval.py" afterPath="$PROJECT_DIR$/ralm/retrievers/sparse_retrieval.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/eval_baseline.sh" afterPath="$PROJECT_DIR$/scripts/eval_baseline.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/eval_baseline_hnsw.sh" afterPath="$PROJECT_DIR$/scripts/eval_baseline_hnsw.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/eval_caching.sh" afterPath="$PROJECT_DIR$/scripts/eval_caching.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="eval_rag_serve.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="eval_rag_serve.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eval_rag_serve.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="365" column="49" lean-forward="true" selection-start-line="365" selection-start-column="49" selection-end-line="365" selection-end-column="49" />
+            <state relative-caret-position="456">
+              <caret line="391" column="0" lean-forward="true" selection-start-line="391" selection-start-column="0" selection-end-line="391" selection-end-column="0" />
               <folding>
                 <element signature="e#0#60#0" expanded="true" />
               </folding>
@@ -33,53 +32,50 @@
       <file leaf-file-name="eval_caching.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/eval_caching.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+            <state relative-caret-position="18">
+              <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils.py">
+      <file leaf-file-name="sparse_retrieval.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ralm/retrievers/sparse_retrieval.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/transformer_utils/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="4705" column="80" lean-forward="false" selection-start-line="4705" selection-start-column="80" selection-end-line="4705" selection-end-column="80" />
+            <state relative-caret-position="378">
+              <caret line="21" column="47" lean-forward="false" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
               <folding>
-                <element signature="e#740#751#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="generation_utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/transformer_utils/generation_utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4636">
-              <caret line="2266" column="73" lean-forward="true" selection-start-line="2266" selection-start-column="73" selection-end-line="2266" selection-end-column="73" />
-              <folding>
-                <element signature="e#740#754#0" expanded="true" />
-                <marker date="1692566454187" expanded="true" signature="128833:128853" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="eval_baseline.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="eval_baseline.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/eval_baseline.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="19" />
+            <state relative-caret-position="234">
+              <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="eval_prefetching.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/eval_prefetching.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="run_gpt2.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/run_gpt2.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -95,10 +91,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ralm/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="dense_retrieval.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-647">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -107,23 +113,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build_hnsw_index.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build_hnsw_index.py">
+      <file leaf-file-name="retrieval_factory.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="39" lean-forward="false" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="eval_baseline_hnsw.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/eval_baseline_hnsw.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="19" />
+            <state relative-caret-position="414">
+              <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -144,6 +138,8 @@
       <find>generate</find>
       <find>single_step_ret_lat</find>
       <find>match_len</find>
+      <find>cache_retriever</find>
+      <find>retrieval_latency</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -159,9 +155,11 @@
         <option value="$PROJECT_DIR$/transformer_utils/generation_utils.py" />
         <option value="$PROJECT_DIR$/scripts/eval_baseline_hnsw.sh" />
         <option value="$PROJECT_DIR$/utils.py" />
-        <option value="$PROJECT_DIR$/scripts/eval_baseline.sh" />
         <option value="$PROJECT_DIR$/scripts/eval_caching.sh" />
+        <option value="$PROJECT_DIR$/scripts/run_gpt2.sh" />
+        <option value="$PROJECT_DIR$/ralm/retrievers/sparse_retrieval.py" />
         <option value="$PROJECT_DIR$/eval_rag_serve.py" />
+        <option value="$PROJECT_DIR$/scripts/eval_baseline.sh" />
       </list>
     </option>
   </component>
@@ -171,7 +169,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="y" value="308" />
     <option name="width" value="2560" />
     <option name="height" value="1360" />
@@ -191,6 +189,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -198,6 +197,17 @@
             <path>
               <item name="ralm-sys" type="b2602c69:ProjectViewProjectNode" />
               <item name="ralm-sys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ralm-sys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ralm-sys" type="462c0819:PsiDirectoryNode" />
+              <item name="ralm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ralm-sys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ralm-sys" type="462c0819:PsiDirectoryNode" />
+              <item name="ralm" type="462c0819:PsiDirectoryNode" />
+              <item name="retrievers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ralm-sys" type="b2602c69:ProjectViewProjectNode" />
@@ -213,7 +223,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -259,7 +268,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.098093726" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09888801" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -294,52 +303,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/build_hnsw_index.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/eval_baseline_hnsw.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/transformer_utils/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84690">
-          <caret line="4705" column="80" lean-forward="false" selection-start-line="4705" selection-start-column="80" selection-end-line="4705" selection-end-column="80" />
-          <folding>
-            <element signature="e#740#751#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eval_rag_serve.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2934">
-          <caret line="181" column="71" lean-forward="false" selection-start-line="181" selection-start-column="71" selection-end-line="181" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/eval_baseline.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="10" lean-forward="false" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -371,7 +334,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -389,7 +352,7 @@
         <state relative-caret-position="85392">
           <caret line="4744" column="23" lean-forward="false" selection-start-line="4744" selection-start-column="23" selection-end-line="4744" selection-end-column="23" />
           <folding>
-            <element signature="e#740#751#0" expanded="true" />
+            <element signature="e#740#751#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -579,30 +542,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py">
+    <entry file="file://$PROJECT_DIR$/build_hnsw_index.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+        <state relative-caret-position="252">
+          <caret line="20" column="39" lean-forward="false" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#11#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build_hnsw_index.py">
+    <entry file="file://$PROJECT_DIR$/transformer_utils/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="39" lean-forward="false" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+        <state relative-caret-position="83664">
+          <caret line="4705" column="80" lean-forward="false" selection-start-line="4705" selection-start-column="80" selection-end-line="4705" selection-end-column="80" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#740#751#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/transformer_utils/generation_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4636">
-          <caret line="2266" column="73" lean-forward="true" selection-start-line="2266" selection-start-column="73" selection-end-line="2266" selection-end-column="73" />
+        <state relative-caret-position="18">
+          <caret line="2266" column="73" lean-forward="false" selection-start-line="2266" selection-start-column="73" selection-end-line="2266" selection-end-column="73" />
           <folding>
-            <element signature="e#740#754#0" expanded="true" />
+            <element signature="e#740#754#0" expanded="false" />
             <marker date="1692566454187" expanded="true" signature="128833:128853" ph="..." />
           </folding>
         </state>
@@ -611,18 +584,32 @@
     <entry file="file://$PROJECT_DIR$/scripts/eval_baseline_hnsw.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="19" />
+          <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py">
+    <entry file="file://$PROJECT_DIR$/ralm/retrievers/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ralm/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/run_gpt2.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -634,47 +621,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/eval_baseline.sh">
+    <entry file="file://$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="19" />
+        <state relative-caret-position="414">
+          <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/transformer_utils/utils.py">
+    <entry file="file://$PROJECT_DIR$/scripts/eval_prefetching.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="4705" column="80" lean-forward="false" selection-start-line="4705" selection-start-column="80" selection-end-line="4705" selection-end-column="80" />
+        <state relative-caret-position="252">
+          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-647">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#740#751#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/eval_caching.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        <state relative-caret-position="18">
+          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ralm/retrievers/sparse_retrieval.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="47" lean-forward="false" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/eval_rag_serve.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="365" column="49" lean-forward="true" selection-start-line="365" selection-start-column="49" selection-end-line="365" selection-end-column="49" />
+        <state relative-caret-position="456">
+          <caret line="391" column="0" lean-forward="true" selection-start-line="391" selection-start-column="0" selection-end-line="391" selection-end-column="0" />
           <folding>
             <element signature="e#0#60#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/eval_baseline.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>

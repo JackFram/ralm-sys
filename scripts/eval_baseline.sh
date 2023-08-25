@@ -1,3 +1,5 @@
+###
+
 nohup python -u eval_rag_serve.py \
 --model_name gpt2 \
 --dataset_path wikitext \
@@ -5,8 +7,7 @@ nohup python -u eval_rag_serve.py \
 --dataset_split validation \
 --output_dir ./results \
 --stride 4 \
---spec_step 4 \
---adapt_spec_step \
+--spec_step 1 \
 --retrieval_type dense \
 --max_length 512 \
 --retriever \

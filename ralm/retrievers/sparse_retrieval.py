@@ -3,6 +3,7 @@ import multiprocessing
 
 from ralm.retrievers.base_retrieval import BaseRetriever
 from pyserini.search.lucene import LuceneSearcher
+from pyserini.index import IndexReader
 
 
 class SparseRetriever(BaseRetriever):
@@ -12,6 +13,15 @@ class SparseRetriever(BaseRetriever):
         self.num_tokens_for_query = num_tokens_for_query
 
         self.forbidden_titles = self._get_forbidden_titles(forbidden_titles_path)
+        self.reader = IndexReader(self.searcher.index_dir)
+        # doc = self.retrieve(["Lobster is tasty."])
+        # score = doc[0]["retrieved_docs"][0]["score"]
+        # docid = doc[0]["retrieved_docs"][0]["docid"]
+        # print(f"gt score: {score}")
+        # print(self.reader.compute_query_document_score(docid, "Lobster is tasty."))
+        # self.reader.dump_documents_BM25("./test.json")
+        # exit(0)
+
 
     def _get_searcher(self, index_name):
         try:
@@ -82,8 +92,11 @@ class SparseRetriever(BaseRetriever):
                 context_str = res_dict["contents"]
                 title = self._get_title_from_retrieved_document(context_str)
                 if title not in self.forbidden_titles:
-                    allowed_docs.append({"text": context_str, "score": hit.score})
+                    allowed_docs.append({"text": context_str, "score": hit.score, "docid": hit.docid})
                     if len(allowed_docs) >= k:
                         break
             d["retrieved_docs"] = allowed_docs
         return ret_dataset
+
+    def get_doc_query_score(self, docid, query):
+        return self.reader.compute_query_document_score(docid, query)
