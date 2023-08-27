@@ -14,6 +14,7 @@ def add_retriever_args(args, retriever_type):
         args.index_name = "wikipedia-dpr-multi-bf"
         args.sparse_index_name = "wikipedia-dpr-multi-bf"
         args.encoder_name = "facebook/dpr-question_encoder-multiset-base"
+        args.ratio = 1
         
     elif retriever_type == "dense_hnsw":
         args.num_tokens_for_query = 32
@@ -21,6 +22,7 @@ def add_retriever_args(args, retriever_type):
         args.index_name = "wikipedia-dpr-hnsw"
         args.sparse_index_name = "wikipedia-dpr-multi-bf"
         args.encoder_name = "facebook/dpr-question_encoder-multiset-base"
+        args.ratio = 10
         
     else:
         raise ValueError
@@ -42,5 +44,6 @@ def get_retriever(retriever_type, args):
             forbidden_titles_path=args.forbidden_titles_path,
             num_tokens_for_query=args.num_tokens_for_query,
             sparse_index_name=args.sparse_index_name,
+            ratio=args.ratio,
         )
     raise ValueError
