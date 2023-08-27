@@ -2,11 +2,11 @@ def add_retriever_args(args, retriever_type):
     if retriever_type == "sparse":
         args.index_name = "wikipedia-dpr"
         args.num_tokens_for_query = 32
-        args.forbidden_titles_path = "ralm/retrievers/wikitext103_forbidden_titles.txt"
+        args.forbidden_titles_path = None # "ralm/retrievers/wikitext103_forbidden_titles.txt"
 
     elif retriever_type == "dense":
         args.num_tokens_for_query = 32
-        args.forbidden_titles_path = "ralm/retrievers/wikitext103_forbidden_titles.txt"
+        args.forbidden_titles_path = None # "ralm/retrievers/wikitext103_forbidden_titles.txt"
         '''
         cast2019-tct_colbert-v2-hnsw: castorini/tct_colbert-v2-msmarco
         wikipedia-dpr-multi-bf: facebook/dpr-question_encoder-multiset-base
@@ -18,7 +18,7 @@ def add_retriever_args(args, retriever_type):
         
     elif retriever_type == "dense_hnsw":
         args.num_tokens_for_query = 32
-        args.forbidden_titles_path = "ralm/retrievers/wikitext103_forbidden_titles.txt"
+        args.forbidden_titles_path = None # "ralm/retrievers/wikitext103_forbidden_titles.txt"
         args.index_name = "wikipedia-dpr-hnsw"
         args.sparse_index_name = "wikipedia-dpr-multi-bf"
         args.encoder_name = "facebook/dpr-question_encoder-multiset-base"
