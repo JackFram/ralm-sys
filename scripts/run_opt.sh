@@ -3,7 +3,7 @@
 
 ### Dense + wikitext, B ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -15,7 +15,7 @@ python -u eval_rag_serve.py \
 --retriever
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -27,7 +27,7 @@ python -u eval_rag_serve.py \
 --retriever
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -39,7 +39,7 @@ python -u eval_rag_serve.py \
 --retriever
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -51,7 +51,7 @@ python -u eval_rag_serve.py \
 --retriever
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -63,7 +63,7 @@ python -u eval_rag_serve.py \
 --retriever
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -77,7 +77,7 @@ python -u eval_rag_serve.py \
 
 ### Dense + wikitext, SpecRet ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -90,7 +90,7 @@ python -u eval_rag_serve.py \
 --cache
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -103,7 +103,7 @@ python -u eval_rag_serve.py \
 --cache
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -116,7 +116,7 @@ python -u eval_rag_serve.py \
 --cache
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -129,7 +129,7 @@ python -u eval_rag_serve.py \
 --cache
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -142,7 +142,7 @@ python -u eval_rag_serve.py \
 --cache
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -156,7 +156,7 @@ python -u eval_rag_serve.py \
 
 ### Dense + wikitext, SpecRet+P ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -170,7 +170,7 @@ python -u eval_rag_serve.py \
 --cache_update_width 256
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -184,7 +184,7 @@ python -u eval_rag_serve.py \
 --cache_update_width 256
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -198,7 +198,7 @@ python -u eval_rag_serve.py \
 --cache_update_width 256
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -212,7 +212,7 @@ python -u eval_rag_serve.py \
 --cache_update_width 256
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -226,7 +226,7 @@ python -u eval_rag_serve.py \
 --cache_update_width 256
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -242,7 +242,7 @@ python -u eval_rag_serve.py \
 
 ### Dense + wikitext, SpecRet+S ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -256,7 +256,7 @@ python -u eval_rag_serve.py \
 --adapt_spec_step
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -270,7 +270,7 @@ python -u eval_rag_serve.py \
 --adapt_spec_step
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -284,7 +284,7 @@ python -u eval_rag_serve.py \
 --adapt_spec_step
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -298,7 +298,7 @@ python -u eval_rag_serve.py \
 --adapt_spec_step
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -312,7 +312,7 @@ python -u eval_rag_serve.py \
 --adapt_spec_step
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -328,7 +328,7 @@ python -u eval_rag_serve.py \
 
 ### Dense + wikitext, SpecRet+A ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -342,7 +342,7 @@ python -u eval_rag_serve.py \
 --async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -356,7 +356,7 @@ python -u eval_rag_serve.py \
 --async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -370,7 +370,7 @@ python -u eval_rag_serve.py \
 --async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -384,7 +384,7 @@ python -u eval_rag_serve.py \
 --async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -398,7 +398,7 @@ python -u eval_rag_serve.py \
 --async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -413,7 +413,7 @@ python -u eval_rag_serve.py \
 
 ### Dense + wikitext, SpecRet+PSA ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -429,7 +429,7 @@ python -u eval_rag_serve.py \
 --async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -445,7 +445,7 @@ python -u eval_rag_serve.py \
 --async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -461,7 +461,7 @@ python -u eval_rag_serve.py \
 --async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -477,7 +477,7 @@ python -u eval_rag_serve.py \
 --async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -493,7 +493,7 @@ python -u eval_rag_serve.py \
 --async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \

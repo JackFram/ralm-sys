@@ -75,7 +75,7 @@ class SparseRetriever(BaseRetriever):
             queries,
             qids=[str(i) for i in range(len(queries))],
             k=max(100, 4*k) if self.forbidden_titles else k,
-            threads=multiprocessing.cpu_count()
+            threads=multiprocessing.cpu_count()//2
         )
 
         ret_dataset = [

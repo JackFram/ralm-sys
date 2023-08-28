@@ -72,7 +72,7 @@ class DenseRetriever(BaseRetriever):
             queries,
             q_ids=[str(i) for i in range(len(queries))],
             k=max(100, 4*k) if self.forbidden_titles else k,
-            threads=multiprocessing.cpu_count(),
+            threads=multiprocessing.cpu_count()//2,
             return_vector=True
         )
         # print(q_embed[0, :20])

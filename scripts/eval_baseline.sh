@@ -1,7 +1,7 @@
 ###
 
 nohup python -u eval_rag_serve.py \
---model_name gpt2 \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \

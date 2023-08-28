@@ -312,6 +312,9 @@ def evaluate_logprob_with_retrieved_docs(
             d = input_ids[0, target_loc-32: target_loc]
             query_batch.append(d)
 
+        if len(query_batch) == 0:
+            break
+
         # retrieve ground truth docs
         start_time = time.time()
         batch_query_text = tokenizer.batch_decode(torch.stack(query_batch, dim=0), skip_special_tokens=True)
@@ -425,15 +428,15 @@ def evaluate_logprob_with_retrieved_docs(
         # print(f"stride being forwarded: {match_len}")
     total_latency = retrieval_latency + inference_latency - latency_saved_by_async
     # print(input_ids[0, query_len:])
-    print(
-        f"Total Latency: {total_latency}, Inference Latency: {inference_latency}"
-        f", Retrieval Latency: {retrieval_latency}"
-        f", Latency Saved by Asynchronous Retrieval: {latency_saved_by_async}"
-        f", Infer Time: {infer_time}, Retrieval Time: {ret_time}"
-        f", Final Cache Size: {len(cache_retriever)}"
-        f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
-
-    exit(0)
+    # print(
+    #     f"Total Latency: {total_latency}, Inference Latency: {inference_latency}"
+    #     f", Retrieval Latency: {retrieval_latency}"
+    #     f", Latency Saved by Asynchronous Retrieval: {latency_saved_by_async}"
+    #     f", Infer Time: {infer_time}, Retrieval Time: {ret_time}"
+    #     f", Final Cache Size: {len(cache_retriever)}"
+    #     f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
+    #
+    # exit(0)
 
     return total_latency, inference_latency, retrieval_latency
 
@@ -497,7 +500,8 @@ def eval_dataset(
                 num_tokens_to_rank=num_tokens_to_rank_logprob,
                 retrieval_max_length=retrieval_max_length,
                 num_docs=num_docs_to_rank,
-                spec_step=spec_step
+                spec_step=spec_step,
+                stride=stride,
             )
             # all_chosen_doc_ids.append(chosen_doc_id)
             request_num += 1
@@ -535,7 +539,7 @@ def main(args):
         if not os.path.isdir(args.output_dir):
             os.makedirs(args.output_dir)
     print_args(args, output_dir=args.output_dir)
-    device = "cuda:1" if torch.cuda.is_available() else "cpu"
+    device = "cuda:0" if torch.cuda.is_available() else "cpu"
     device_count = torch.cuda.device_count()
     data_parallel = device_count > 1 and not args.model_parallelism and args.retriever and \
                     args.ranking_strategy in ["logprob", "oracle"]
