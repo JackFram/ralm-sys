@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5ae7ef6-4cfa-4dab-b93d-2a253ac312de" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eval_rag_serve.py" afterPath="$PROJECT_DIR$/eval_rag_serve.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py" afterPath="$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py" afterPath="$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/eval_baseline.sh" afterPath="$PROJECT_DIR$/scripts/eval_baseline.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/launch_exp.sh" afterPath="$PROJECT_DIR$/scripts/launch_exp.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/run_gpt2.sh" afterPath="$PROJECT_DIR$/scripts/run_gpt2.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +19,8 @@
       <file leaf-file-name="eval_rag_serve.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eval_rag_serve.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3">
-              <caret line="542" column="5" lean-forward="true" selection-start-line="542" selection-start-column="5" selection-end-line="542" selection-end-column="5" />
+            <state relative-caret-position="132">
+              <caret line="608" column="27" lean-forward="false" selection-start-line="608" selection-start-column="27" selection-end-line="608" selection-end-column="42" />
               <folding>
                 <element signature="e#0#60#0" expanded="true" />
               </folding>
@@ -40,33 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sparse_retrieval.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ralm/retrievers/sparse_retrieval.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1062">
-              <caret line="64" column="17" lean-forward="false" selection-start-line="64" selection-start-column="17" selection-end-line="64" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="eval_baseline.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="eval_baseline.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/eval_baseline.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
-              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="eval_prefetching.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/eval_prefetching.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="23" lean-forward="false" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+              <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -75,8 +51,8 @@
       <file leaf-file-name="run_gpt2.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/run_gpt2.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+            <state relative-caret-position="374">
+              <caret line="181" column="24" lean-forward="true" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -102,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="retrieval_factory.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="retrieval_factory.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+            <state relative-caret-position="72">
+              <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -150,14 +126,14 @@
         <option value="$PROJECT_DIR$/scripts/eval_baseline_hnsw.sh" />
         <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/scripts/eval_caching.sh" />
-        <option value="$PROJECT_DIR$/scripts/run_gpt2.sh" />
         <option value="$PROJECT_DIR$/scripts/run_opt.sh" />
         <option value="$PROJECT_DIR$/ralm/retrievers/sparse_retrieval.py" />
         <option value="$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py" />
         <option value="$PROJECT_DIR$/scripts/launch_exp.sh" />
+        <option value="$PROJECT_DIR$/scripts/run_gpt2.sh" />
         <option value="$PROJECT_DIR$/eval_rag_serve.py" />
-        <option value="$PROJECT_DIR$/scripts/eval_baseline.sh" />
         <option value="$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py" />
+        <option value="$PROJECT_DIR$/scripts/eval_baseline.sh" />
       </list>
     </option>
   </component>
@@ -575,6 +551,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -604,12 +581,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/run_gpt2.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="181" column="24" lean-forward="true" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ralm/retrievers/sparse_retrieval.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1062">
+        <state relative-caret-position="34">
           <caret line="64" column="17" lean-forward="false" selection-start-line="64" selection-start-column="17" selection-end-line="64" selection-end-column="17" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/eval_caching.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eval_rag_serve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="608" column="27" lean-forward="false" selection-start-line="608" selection-start-column="27" selection-end-line="608" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -622,44 +625,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/eval_caching.sh">
+    <entry file="file://$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        <state relative-caret-position="72">
+          <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/run_gpt2.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eval_rag_serve.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
-          <caret line="542" column="5" lean-forward="true" selection-start-line="542" selection-start-column="5" selection-end-line="542" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/eval_baseline.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+          <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
           <folding />
         </state>
       </provider>

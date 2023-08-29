@@ -415,13 +415,13 @@ def evaluate_logprob_with_retrieved_docs(
         '''
         if args.adapt_spec_step and iteration > args.adapt_cold_start:
             gamma = estimate_gamma(spec_step_list=spec_step_list[-args.gamma_window:], match_length_list=match_length_list[-args.gamma_window:])
-            # print(spec_step_list, match_length_list)
-            # print(single_step_infer_lat, single_step_ret_lat, gamma)
+            print(spec_step_list, match_length_list)
+            print(single_step_infer_lat, single_step_ret_lat, gamma)
             if args.async_retrieval:
                 spec_step = async_opt_step(a=single_step_infer_lat, b=single_step_ret_lat, gamma=gamma)
             else:
                 spec_step = sync_opt_step(a=single_step_infer_lat, b=single_step_ret_lat, gamma=gamma)
-            # print(f"adapting speculation step to {spec_step}")
+            print(f"adapting speculation step to {spec_step}")
 
         # print(query_len, query_start_idx, input_ids.shape)
         # print(input_ids, tokenizer.eos_token_id in input_ids, input_ids.shape[1] - query_len)
