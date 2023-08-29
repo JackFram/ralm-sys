@@ -415,26 +415,26 @@ def evaluate_logprob_with_retrieved_docs(
         '''
         if args.adapt_spec_step and iteration > args.adapt_cold_start:
             gamma = estimate_gamma(spec_step_list=spec_step_list[-args.gamma_window:], match_length_list=match_length_list[-args.gamma_window:])
-            print(spec_step_list, match_length_list)
-            print(single_step_infer_lat, single_step_ret_lat, gamma)
+            # print(spec_step_list, match_length_list)
+            # print(single_step_infer_lat, single_step_ret_lat, gamma)
             if args.async_retrieval:
                 spec_step = async_opt_step(a=single_step_infer_lat, b=single_step_ret_lat, gamma=gamma)
             else:
                 spec_step = sync_opt_step(a=single_step_infer_lat, b=single_step_ret_lat, gamma=gamma)
-            print(f"adapting speculation step to {spec_step}")
+            # print(f"adapting speculation step to {spec_step}")
 
         # print(query_len, query_start_idx, input_ids.shape)
         # print(input_ids, tokenizer.eos_token_id in input_ids, input_ids.shape[1] - query_len)
         # print(f"stride being forwarded: {match_len}")
     total_latency = retrieval_latency + inference_latency - latency_saved_by_async
     # print(input_ids[0, query_len:])
-    print(
-        f"Total Latency: {total_latency}, Inference Latency: {inference_latency}"
-        f", Retrieval Latency: {retrieval_latency}"
-        f", Latency Saved by Asynchronous Retrieval: {latency_saved_by_async}"
-        f", Infer Time: {infer_time}, Retrieval Time: {ret_time}"
-        f", Final Cache Size: {len(cache_retriever)}"
-        f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
+    # print(
+    #     f"Total Latency: {total_latency}, Inference Latency: {inference_latency}"
+    #     f", Retrieval Latency: {retrieval_latency}"
+    #     f", Latency Saved by Asynchronous Retrieval: {latency_saved_by_async}"
+    #     f", Infer Time: {infer_time}, Retrieval Time: {ret_time}"
+    #     f", Final Cache Size: {len(cache_retriever)}"
+    #     f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
 
     # exit(0)
 
@@ -522,9 +522,9 @@ def eval_dataset(
         # if end_loc == dataset_len:
         #     break
     # assert retrieval_dataset is None or len(retrieval_dataset) == idx
-    print(f"Latency: {np.mean(lat_list):.2f}+={np.std(lat_list)} s, "
-          f"Forward latency: {np.mean(inf_list):.2f}+={np.std(inf_list)} s, "
-          f"Retrieval latency: {np.mean(ret_list):.2f}+={np.std(ret_list)} s")
+    print(f"Latency: {np.mean(lat_list):.2f}+-{np.std(lat_list)} s, "
+          f"Forward latency: {np.mean(inf_list):.2f}+-{np.std(inf_list)} s, "
+          f"Retrieval latency: {np.mean(ret_list):.2f}+-{np.std(ret_list)} s")
 
 
 def main(args):

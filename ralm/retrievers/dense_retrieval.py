@@ -73,13 +73,8 @@ class DenseRetriever(BaseRetriever):
         q_embed, all_res = self.searcher.batch_search(
             queries,
             q_ids=[str(i) for i in range(len(queries))],
-<<<<<<< HEAD
             k=max(100, 4*k) if self.forbidden_titles else k,
             threads=multiprocessing.cpu_count()//2,
-=======
-            k=max(100, 4*k*self.ratio) if self.forbidden_titles else k*self.ratio,
-            threads=multiprocessing.cpu_count(),
->>>>>>> deb2d23a3dc1a7e027c40dfa34d6c28c61caa4ed
             return_vector=True
         )
         # print(q_embed[0, :20])

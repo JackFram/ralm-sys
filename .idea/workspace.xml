@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e5ae7ef6-4cfa-4dab-b93d-2a253ac312de" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eval_rag_serve.py" afterPath="$PROJECT_DIR$/eval_rag_serve.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py" afterPath="$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/eval_baseline.sh" afterPath="$PROJECT_DIR$/scripts/eval_baseline.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py" afterPath="$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/run_gpt2.sh" afterPath="$PROJECT_DIR$/scripts/run_gpt2.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/run_opt.sh" afterPath="$PROJECT_DIR$/scripts/run_opt.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,11 +19,9 @@
       <file leaf-file-name="eval_rag_serve.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eval_rag_serve.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="608" column="27" lean-forward="false" selection-start-line="608" selection-start-column="27" selection-end-line="608" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#60#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-9376">
+              <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -38,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="eval_baseline.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="eval_baseline.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/eval_baseline.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
-              <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -51,8 +49,8 @@
       <file leaf-file-name="run_gpt2.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/run_gpt2.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="181" column="24" lean-forward="true" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
+            <state relative-caret-position="5596">
+              <caret line="341" column="110" lean-forward="false" selection-start-line="341" selection-start-column="110" selection-end-line="341" selection-end-column="110" />
               <folding />
             </state>
           </provider>
@@ -61,8 +59,8 @@
       <file leaf-file-name="run_opt.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/run_opt.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8910">
-              <caret line="495" column="30" lean-forward="false" selection-start-line="495" selection-start-column="30" selection-end-line="495" selection-end-column="30" />
+            <state relative-caret-position="9468">
+              <caret line="526" column="9" lean-forward="true" selection-start-line="526" selection-start-column="9" selection-end-line="526" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -78,10 +76,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="dense_retrieval.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="293">
+              <caret line="78" column="9" lean-forward="true" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="retrieval_factory.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
+            <state relative-caret-position="-261">
               <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
               <folding />
             </state>
@@ -107,10 +115,12 @@
       <find>retrieval_latency</find>
       <find>gpt2</find>
       <find>gpt2-medium</find>
+      <find>+=</find>
     </findStrings>
     <replaceStrings>
       <replace>gpt2-medium</replace>
       <replace>facebook/opt-1.3b</replace>
+      <replace>+-</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -126,14 +136,14 @@
         <option value="$PROJECT_DIR$/scripts/eval_baseline_hnsw.sh" />
         <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/scripts/eval_caching.sh" />
-        <option value="$PROJECT_DIR$/scripts/run_opt.sh" />
         <option value="$PROJECT_DIR$/ralm/retrievers/sparse_retrieval.py" />
-        <option value="$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py" />
         <option value="$PROJECT_DIR$/scripts/launch_exp.sh" />
-        <option value="$PROJECT_DIR$/scripts/run_gpt2.sh" />
-        <option value="$PROJECT_DIR$/eval_rag_serve.py" />
         <option value="$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py" />
         <option value="$PROJECT_DIR$/scripts/eval_baseline.sh" />
+        <option value="$PROJECT_DIR$/scripts/run_opt.sh" />
+        <option value="$PROJECT_DIR$/scripts/run_gpt2.sh" />
+        <option value="$PROJECT_DIR$/eval_rag_serve.py" />
+        <option value="$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py" />
       </list>
     </option>
   </component>
@@ -316,9 +326,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -326,9 +334,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -337,9 +343,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2502">
           <caret line="157" column="28" lean-forward="false" selection-start-line="157" selection-start-column="28" selection-end-line="157" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -348,9 +352,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -359,9 +361,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -370,9 +370,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4806">
           <caret line="285" column="20" lean-forward="false" selection-start-line="285" selection-start-column="20" selection-end-line="285" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -381,9 +379,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -391,9 +387,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -401,9 +395,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -419,9 +411,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="158" column="0" lean-forward="true" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -430,9 +420,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -441,9 +429,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -452,9 +438,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4806">
           <caret line="285" column="20" lean-forward="false" selection-start-line="285" selection-start-column="20" selection-end-line="285" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -463,9 +447,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -473,9 +455,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -483,9 +463,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -555,36 +533,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/run_opt.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8910">
-          <caret line="495" column="30" lean-forward="false" selection-start-line="495" selection-start-column="30" selection-end-line="495" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="74" column="49" lean-forward="false" selection-start-line="74" selection-start-column="49" selection-end-line="74" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#11#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/eval_prefetching.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" column="23" lean-forward="false" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/run_gpt2.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="181" column="24" lean-forward="true" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -594,7 +546,7 @@
         <state relative-caret-position="34">
           <caret line="64" column="17" lean-forward="false" selection-start-line="64" selection-start-column="17" selection-end-line="64" selection-end-column="17" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -607,13 +559,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/eval_baseline.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/eval_rag_serve.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="608" column="27" lean-forward="false" selection-start-line="608" selection-start-column="27" selection-end-line="608" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-9376">
+          <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/run_opt.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9468">
+          <caret line="526" column="9" lean-forward="true" selection-start-line="526" selection-start-column="9" selection-end-line="526" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/run_gpt2.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5596">
+          <caret line="341" column="110" lean-forward="false" selection-start-line="341" selection-start-column="110" selection-end-line="341" selection-end-column="110" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -627,16 +601,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ralm/retrievers/retrieval_factory.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
+        <state relative-caret-position="-261">
           <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/eval_baseline.sh">
+    <entry file="file://$PROJECT_DIR$/ralm/retrievers/dense_retrieval.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+        <state relative-caret-position="293">
+          <caret line="78" column="9" lean-forward="true" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
           <folding />
         </state>
       </provider>
