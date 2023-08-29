@@ -428,14 +428,14 @@ def evaluate_logprob_with_retrieved_docs(
         # print(f"stride being forwarded: {match_len}")
     total_latency = retrieval_latency + inference_latency - latency_saved_by_async
     # print(input_ids[0, query_len:])
-    # print(
-    #     f"Total Latency: {total_latency}, Inference Latency: {inference_latency}"
-    #     f", Retrieval Latency: {retrieval_latency}"
-    #     f", Latency Saved by Asynchronous Retrieval: {latency_saved_by_async}"
-    #     f", Infer Time: {infer_time}, Retrieval Time: {ret_time}"
-    #     f", Final Cache Size: {len(cache_retriever)}"
-    #     f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
-    #
+    print(
+        f"Total Latency: {total_latency}, Inference Latency: {inference_latency}"
+        f", Retrieval Latency: {retrieval_latency}"
+        f", Latency Saved by Asynchronous Retrieval: {latency_saved_by_async}"
+        f", Infer Time: {infer_time}, Retrieval Time: {ret_time}"
+        f", Final Cache Size: {len(cache_retriever)}"
+        f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
+
     # exit(0)
 
     return total_latency, inference_latency, retrieval_latency
@@ -478,21 +478,26 @@ def eval_dataset(
     prev_end_loc = 0
 
     idx = 0
-    all_token_ppls = []
-    all_tokens_to_predict = []
-    all_chosen_doc_ids = [None]
-    num_inputs_no_retrieval = 0
-    request_num = 0
-    sum_latency = 0
-    sum_inference_latency = 0
-    sum_retrieval_latency = 0
+    # all_token_ppls = []
+    # all_tokens_to_predict = []
+    # all_chosen_doc_ids = [None]
+    # num_inputs_no_retrieval = 0
 
-    loc_list = list(range(0, dataset_len, max_length))[:100]
+    lat_list = []
+    inf_list = []
+    ret_list = []
 
-    for begin_loc in tqdm(loc_list):
-        end_loc = min(begin_loc + max_length, dataset_len)
+    for _ in range(args.trial_num):
 
-        if retriever is not None:
+        sum_latency = 0
+        sum_inference_latency = 0
+        sum_retrieval_latency = 0
+        request_num = 0
+
+        loc_list = list(range(0, dataset_len, max_length))[:100]
+
+        for begin_loc in tqdm(loc_list):
+            end_loc = min(begin_loc + max_length, dataset_len)
 
             total_latency, inference_latency, retrieval_latency = evaluate_logprob_with_retrieved_docs(
                 args, model, tokenizer, retriever, device, encodings, begin_loc, end_loc,
@@ -508,30 +513,18 @@ def eval_dataset(
             sum_latency += total_latency
             sum_inference_latency += inference_latency
             sum_retrieval_latency += retrieval_latency
+            lat_list.append(sum_latency/request_num)
+            inf_list.append(sum_inference_latency/request_num)
+            ret_list.append(sum_retrieval_latency/request_num)
             # print(f"Total Latency: {total_latency}, Inference Latency: {inference_latency}, Retrieval Latency: {retrieval_latency}")
-
-        else:
-            input_ids = encodings.input_ids[:, begin_loc:end_loc].to(device)
-            with torch.no_grad():
-                start_time = time()
-                outputs = model.generate(inputs=input_ids, max_new_tokens=256, use_cache=True)
-                inference_latency = time() - start_time
-                total_latency = inference_latency
-                retrieval_latency = 0
-
-                request_num += 1
-                sum_latency += total_latency
-                sum_inference_latency += inference_latency
-                sum_retrieval_latency += retrieval_latency
-                print(
-                    f"Total Latency: {total_latency}, Inference Latency: {inference_latency}, Retrieval Latency: {retrieval_latency}")
-
         # prev_end_loc = end_loc
         # idx += 1
         # if end_loc == dataset_len:
         #     break
     # assert retrieval_dataset is None or len(retrieval_dataset) == idx
-    print(f"Avg latency: {sum_latency/request_num:.2f} s, Avg Forward latency: {sum_inference_latency/request_num:.2f} s, Avg Retrieval latency: {sum_retrieval_latency/request_num:.2f} s")
+    print(f"Latency: {np.mean(lat_list):.2f}+={np.std(lat_list)} s, "
+          f"Forward latency: {np.mean(inf_list):.2f}+={np.std(inf_list)} s, "
+          f"Retrieval latency: {np.mean(ret_list):.2f}+={np.std(ret_list)} s")
 
 
 def main(args):
@@ -539,7 +532,7 @@ def main(args):
         if not os.path.isdir(args.output_dir):
             os.makedirs(args.output_dir)
     print_args(args, output_dir=args.output_dir)
-    device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    device = f"cuda:{args.gpu_id}" if torch.cuda.is_available() else "cpu"
     device_count = torch.cuda.device_count()
     data_parallel = device_count > 1 and not args.model_parallelism and args.retriever and \
                     args.ranking_strategy in ["logprob", "oracle"]
@@ -620,6 +613,7 @@ if __name__ == '__main__':
     parser.add_argument("--spec_step", type=int, default=1)
     parser.add_argument("--cache_dir", type=str, default=None)
     parser.add_argument("--model_parallelism", action="store_true")
+    parser.add_argument("--gpu_id", type=int, default=0)
 
     # Dataset params
     parser.add_argument("--load_from", type=str, choices=["hf", "file"], default="hf")
@@ -644,6 +638,8 @@ if __name__ == '__main__':
     parser.add_argument("--retrieval_type", required=True, choices=RETRIEVAL_TYPES)
     parser.add_argument("--num_docs", type=int, default=1)
 
+    # Evaluation params
+    parser.add_argument("--trial_num", type=int, default=1)
 
     args = parser.parse_args()
 

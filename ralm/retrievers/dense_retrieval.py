@@ -8,12 +8,14 @@ import time
 
 
 class DenseRetriever(BaseRetriever):
-    def __init__(self, index_name, encoder_name, num_tokens_for_query, forbidden_titles_path, sparse_index_name=None):
+    def __init__(self, index_name, encoder_name, num_tokens_for_query, forbidden_titles_path, ratio=1, sparse_index_name=None):
         super(DenseRetriever, self).__init__()
         self.searcher = self._get_searcher(index_name, encoder_name, sparse_index_name)
         self.num_tokens_for_query = num_tokens_for_query
 
         self.forbidden_titles = self._get_forbidden_titles(forbidden_titles_path)
+
+        self.ratio = ratio
 
     def _get_searcher(self, index_name, encoder_name, sparse_index_name=None):
         print(f"Attempting to download the index as if prebuilt by pyserini")
@@ -71,8 +73,13 @@ class DenseRetriever(BaseRetriever):
         q_embed, all_res = self.searcher.batch_search(
             queries,
             q_ids=[str(i) for i in range(len(queries))],
+<<<<<<< HEAD
             k=max(100, 4*k) if self.forbidden_titles else k,
             threads=multiprocessing.cpu_count()//2,
+=======
+            k=max(100, 4*k*self.ratio) if self.forbidden_titles else k*self.ratio,
+            threads=multiprocessing.cpu_count(),
+>>>>>>> deb2d23a3dc1a7e027c40dfa34d6c28c61caa4ed
             return_vector=True
         )
         # print(q_embed[0, :20])
