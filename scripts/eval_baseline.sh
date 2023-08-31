@@ -1,7 +1,7 @@
 ###
 
 nohup python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path nq_open \
 --dataset_split validation \
 --output_dir ./results \
@@ -12,4 +12,4 @@ nohup python -u eval_rag_serve.py \
 --retrieval_type sparse \
 --max_length 128 \
 --retriever \
-> exp_results/baseline.out &
+# > exp_results/baseline.out &

@@ -1,5 +1,5 @@
 nohup python -u eval_rag_serve.py \
---model_name gpt2 \
+--model_name facebook/opt-1.3b \
 --dataset_path trivia_qa \
 --dataset_name rc \
 --dataset_split validation \
@@ -10,4 +10,4 @@ nohup python -u eval_rag_serve.py \
 --retrieval_type dense_hnsw \
 --max_length 512 \
 --retriever \
-> exp_results/baseline_hnsw.out &
+# > exp_results/baseline_hnsw.out &

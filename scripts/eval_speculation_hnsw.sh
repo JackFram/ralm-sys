@@ -1,5 +1,5 @@
 nohup python -u eval_rag_serve.py \
---model_name gpt2 \
+--model_name facebook/opt-1.3b \
 --dataset_path wikitext \
 --dataset_name wikitext-103-v1 \
 --dataset_split validation \
@@ -9,4 +9,4 @@ nohup python -u eval_rag_serve.py \
 --retrieval_type dense_hnsw \
 --max_length 512 \
 --retriever \
-> ~/ralm-sys/approx_retrieval/speculation.out &
+# > ~/ralm-sys/approx_retrieval/speculation.out &
