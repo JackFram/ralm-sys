@@ -147,9 +147,7 @@ def evaluate_logprob_with_retrieved_docs(
         tokenizer,
         retriever,
         device,
-        encodings,
-        begin_loc,
-        end_loc,
+        input_ids,
         ranking_strategy,
         num_tokens_to_rank,
         retrieval_max_length,
@@ -158,9 +156,11 @@ def evaluate_logprob_with_retrieved_docs(
         max_new_token_num=128,
         spec_step=1,
 ):
-    input_ids = encodings.input_ids[:, begin_loc:end_loc].to(device)
+    input_ids = input_ids.to(device)
 
-    query_len = end_loc - begin_loc
+    print(input_ids.shape)
+
+    query_len = input_ids.shape[1]
 
     if args.retrieval_type == "sparse":
         cache_retriever = CacheSparseRetriever(retriever)
@@ -428,15 +428,15 @@ def evaluate_logprob_with_retrieved_docs(
         # print(f"stride being forwarded: {match_len}")
     total_latency = retrieval_latency + inference_latency - latency_saved_by_async
     # print(input_ids[0, query_len:])
-    # print(
-    #     f"Total Latency: {total_latency}, Inference Latency: {inference_latency}"
-    #     f", Retrieval Latency: {retrieval_latency}"
-    #     f", Latency Saved by Asynchronous Retrieval: {latency_saved_by_async}"
-    #     f", Infer Time: {infer_time}, Retrieval Time: {ret_time}"
-    #     f", Final Cache Size: {len(cache_retriever)}"
-    #     f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
+    print(
+        f"Total Latency: {total_latency}, Inference Latency: {inference_latency}"
+        f", Retrieval Latency: {retrieval_latency}"
+        f", Latency Saved by Asynchronous Retrieval: {latency_saved_by_async}"
+        f", Infer Time: {infer_time}, Retrieval Time: {ret_time}"
+        f", Final Cache Size: {len(cache_retriever)}"
+        f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
 
-    # exit(0)
+    exit(0)
 
     return total_latency, inference_latency, retrieval_latency
 
@@ -446,33 +446,22 @@ def eval_dataset(
         model,
         tokenizer,
         retriever,
-        dataset,
+        input_list,
         device,
         max_length,
         output_dir=None,
         stride=4,
         spec_step=1,
-        normalization_level="word",
         retrieval_max_length=256,
         ranking_strategy="first",
         num_docs_to_rank=1,
         num_tokens_to_rank_logprob=16
 ):
-    encodings = tokenizer(dataset, add_special_tokens=False, return_tensors="pt")
 
     print("Max context length:", max_length)
     # Number of tokens in dataset
-    dataset_len = encodings.input_ids.size(1)
-    print("Dataset length:", dataset_len)
-
-    if normalization_level == "word":
-        counter = dataset.count(" ")
-    elif normalization_level == "token":
-        counter = dataset_len
-    else:
-        raise ValueError(f"Unknown normalization_level: '{normalization_level}'")
-
-    print("Normalization factor (num tokens/words..):", counter)
+    # dataset_len = encodings.input_ids.size(1)
+    # print("Dataset length:", dataset_len)
 
     nlls = []
     prev_end_loc = 0
@@ -487,6 +476,8 @@ def eval_dataset(
     inf_list = []
     ret_list = []
 
+    input_list = input_list[:100]
+
     for _ in range(args.trial_num):
 
         sum_latency = 0
@@ -494,13 +485,12 @@ def eval_dataset(
         sum_retrieval_latency = 0
         request_num = 0
 
-        loc_list = list(range(0, dataset_len, max_length))[:100]
 
-        for begin_loc in tqdm(loc_list):
-            end_loc = min(begin_loc + max_length, dataset_len)
+
+        for input_ids in tqdm(input_list):
 
             total_latency, inference_latency, retrieval_latency = evaluate_logprob_with_retrieved_docs(
-                args, model, tokenizer, retriever, device, encodings, begin_loc, end_loc,
+                args, model, tokenizer, retriever, device, input_ids,
                 ranking_strategy=ranking_strategy,
                 num_tokens_to_rank=num_tokens_to_rank_logprob,
                 retrieval_max_length=retrieval_max_length,
@@ -513,9 +503,10 @@ def eval_dataset(
             sum_latency += total_latency
             sum_inference_latency += inference_latency
             sum_retrieval_latency += retrieval_latency
-            lat_list.append(sum_latency/request_num)
-            inf_list.append(sum_inference_latency/request_num)
-            ret_list.append(sum_retrieval_latency/request_num)
+        lat_list.append(sum_latency/request_num)
+        inf_list.append(sum_inference_latency/request_num)
+        ret_list.append(sum_retrieval_latency/request_num)
+    print(lat_list, inf_list, ret_list)
             # print(f"Total Latency: {total_latency}, Inference Latency: {inference_latency}, Retrieval Latency: {retrieval_latency}")
         # prev_end_loc = end_loc
         # idx += 1
@@ -536,7 +527,6 @@ def main(args):
     device_count = torch.cuda.device_count()
     data_parallel = device_count > 1 and not args.model_parallelism and args.retriever and \
                     args.ranking_strategy in ["logprob", "oracle"]
-
     config = AutoConfig.from_pretrained(args.model_name)
     model_args = {
         "cache_dir": args.cache_dir
@@ -561,12 +551,29 @@ def main(args):
     if data_parallel:
         model = torch.nn.DataParallel(model)
 
-    if args.load_from == "hf":
-        dataset = load_dataset(args.dataset_path, args.dataset_name, split=args.dataset_split)
-        dataset = "".join([x["text"] if x["text"] else " \n" for x in dataset])
+    if args.dataset_path == "trivia_qa" or args.dataset_path == "web_questions":
+        data_split = "test"
     else:
-        with open(args.dataset_path, "r") as f:
-            dataset = f.read()
+        data_split = "validation"
+
+    dataset = load_dataset(args.dataset_path, args.dataset_name, split=data_split)
+
+    if args.dataset_path == "wikitext":
+        dataset = "".join([x["text"] if x["text"] else " \n" for x in dataset])
+        encodings = tokenizer(dataset, add_special_tokens=False, return_tensors="pt")
+        dataset_len = encodings.input_ids.size(1)
+        input_begin_loc = list(range(0, dataset_len, max_length))[:100]
+        # print(input_begin_loc)
+        input_list = [encodings.input_ids[:, b:b+max_length] for b in input_begin_loc]
+    else:
+        input_list = []
+        for example in dataset:
+            example = tokenizer(example["question"], return_tensors="pt")["input_ids"]
+            if example.shape[1] > max_length:
+                example = example[:, -max_length:]
+            input_list.append(example)
+            if len(input_list) >= 100:
+                break
 
     transformers.logging.set_verbosity_error()
     print(f"Creating retriever of type {args.retrieval_type}...")
@@ -584,13 +591,12 @@ def main(args):
         model,
         tokenizer,
         retriever,
-        dataset,
+        input_list,
         device,
         max_length=max_length,
         output_dir=args.output_dir,
         stride=args.stride,
         spec_step=args.spec_step,
-        normalization_level=args.normalization_level,
         retrieval_max_length=args.retrieved_max_length,
         ranking_strategy=args.ranking_strategy,
         num_docs_to_rank=args.num_docs_to_rank,
@@ -616,11 +622,9 @@ if __name__ == '__main__':
     parser.add_argument("--gpu_id", type=int, default=0)
 
     # Dataset params
-    parser.add_argument("--load_from", type=str, choices=["hf", "file"], default="hf")
     parser.add_argument("--dataset_path", type=str, required=True)
     parser.add_argument("--dataset_name", type=str, default=None)
     parser.add_argument("--dataset_split", type=str, default="test")
-    parser.add_argument("--normalization_level", choices=["word", "token"], default="word")
 
     # retrieval params
     parser.add_argument("--retriever", action="store_true")

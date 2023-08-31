@@ -26,7 +26,6 @@ def estimate_gamma(spec_step_list, match_length_list, maximum=0.6):
     return min(a / (a+b), maximum)
 
 
-
 if __name__ == "__main__":
     print(sync_opt_step(1, 40, 0.6))
     print(estimate_gamma([3, 4, 3, 2], [1, 4, 2, 0]))
