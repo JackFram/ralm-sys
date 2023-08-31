@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
 
-### Dense + wikitext, B ########################
+### Dense + wiki_qa, B ########################
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -13,27 +12,26 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 1 \
 --retrieval_type dense \
---max_length 512 \
+--max_length 128 \
 --retriever
 
 ## Latency: 146.59+-2.0264597971112925 s, Forward latency: 5.21+-0.04017268064089792 s, Retrieval latency: 141.38+-2.055109685701427 s
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 1 \
 #--retrieval_type dense \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -41,27 +39,26 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 1 \
 --retrieval_type dense_hnsw \
---max_length 512 \
+--max_length 128 \
 --retriever
 
 ## Latency: 6.27+-0.03837397177953794 s, Forward latency: 5.39+-0.028964606535088644 s, Retrieval latency: 0.89+-0.009466686312274486 s
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 1 \
 #--retrieval_type dense_hnsw \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -69,29 +66,28 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 1 \
 --retrieval_type sparse \
---max_length 512 \
+--max_length 128 \
 --retriever
 
 ## Latency: 10.26+-0.19665829054691109 s, Forward latency: 4.11+-0.021997225790452817 s, Retrieval latency: 6.15+-0.17970979590372607 s
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 1 \
 #--retrieval_type sparse \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever
 
 
-### Dense + wikitext, SpecRet ########################
+### Dense + wiki_qa, SpecRet ########################
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -99,7 +95,7 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type dense \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache
 
@@ -107,21 +103,20 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type dense \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -129,7 +124,7 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type dense_hnsw \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache
 
@@ -137,21 +132,20 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type dense_hnsw \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -159,7 +153,7 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type sparse \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache
 
@@ -167,22 +161,21 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type sparse \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache
 
-### Dense + wikitext, SpecRet+P ########################
+### Dense + wiki_qa, SpecRet+P ########################
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -190,29 +183,28 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type dense \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache \
 --cache_update_width 256
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type dense \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache \
 #--cache_update_width 256
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -220,29 +212,28 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type dense_hnsw \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache \
 --cache_update_width 256
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type dense_hnsw \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache \
 #--cache_update_width 256
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -250,31 +241,30 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type sparse \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache \
 --cache_update_width 256
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type sparse \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache \
 #--cache_update_width 256
 
 
-### Dense + wikitext, SpecRet+S ########################
+### Dense + wiki_qa, SpecRet+S ########################
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -282,29 +272,28 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type dense \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache \
 --adapt_spec_step
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type dense \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache \
 #--adapt_spec_step
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -312,29 +301,28 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type dense_hnsw \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache \
 --adapt_spec_step
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type dense_hnsw \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache \
 #--adapt_spec_step
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -342,7 +330,7 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type sparse \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache \
 --adapt_spec_step
@@ -351,24 +339,23 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type sparse \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache \
 #--adapt_spec_step
 
 
-### Dense + wikitext, SpecRet+A ########################
+### Dense + wiki_qa, SpecRet+A ########################
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -376,29 +363,28 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type dense \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache \
 --async_retrieval
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type dense \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache \
 #--async_retrieval
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -406,29 +392,28 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type dense_hnsw \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache \
 --async_retrieval
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type dense_hnsw \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache \
 #--async_retrieval
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -436,30 +421,29 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type sparse \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache \
 --async_retrieval
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type sparse \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache \
 #--async_retrieval
 
-### Dense + wikitext, SpecRet+PSA ########################
+### Dense + wiki_qa, SpecRet+PSA ########################
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -467,7 +451,7 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type dense \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache \
 --cache_update_width 256 \
@@ -476,14 +460,14 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type dense \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache \
 #--cache_update_width 256 \
@@ -492,8 +476,7 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -501,7 +484,7 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type dense_hnsw \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache \
 --cache_update_width 256 \
@@ -510,14 +493,14 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type dense_hnsw \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache \
 #--cache_update_width 256 \
@@ -526,8 +509,7 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -535,7 +517,7 @@ python -u eval_rag_serve.py \
 --stride 4 \
 --spec_step 3 \
 --retrieval_type sparse \
---max_length 512 \
+--max_length 128 \
 --retriever \
 --cache \
 --cache_update_width 256 \
@@ -544,14 +526,14 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path wiki_qa \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
 #--spec_step 4 \
 #--retrieval_type sparse \
-#--max_length 512 \
+#--max_length 128 \
 #--retriever \
 #--cache \
 #--cache_update_width 256 \

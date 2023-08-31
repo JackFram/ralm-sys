@@ -2,7 +2,7 @@
 
 nohup python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path nq_open \
+--dataset_path wiki_qa \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \

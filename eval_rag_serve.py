@@ -551,7 +551,7 @@ def main(args):
     if data_parallel:
         model = torch.nn.DataParallel(model)
 
-    if args.dataset_path == "trivia_qa" or args.dataset_path == "web_questions":
+    if args.dataset_path == "trivia_qa" or args.dataset_path == "web_questions" or args.dataset_path == "wiki_qa":
         data_split = "test"
     else:
         data_split = "validation"
@@ -567,8 +567,13 @@ def main(args):
         input_list = [encodings.input_ids[:, b:b+max_length] for b in input_begin_loc]
     else:
         input_list = []
+        text_list = []
         for example in dataset:
-            example = tokenizer(example["question"], return_tensors="pt")["input_ids"]
+            q = example["question"]
+            if q in text_list:
+                continue
+            text_list.append(q)
+            example = tokenizer(q, return_tensors="pt")["input_ids"]
             if example.shape[1] > max_length:
                 example = example[:, -max_length:]
             input_list.append(example)
