@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 
-### Dense + wikitext, B ########################
+### Dense + trivia_qa, B ########################
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -20,8 +20,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -32,8 +32,8 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -48,8 +48,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -60,8 +60,8 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -76,8 +76,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -87,11 +87,11 @@ python -u eval_rag_serve.py \
 #--retriever
 
 
-### Dense + wikitext, SpecRet ########################
+### Dense + trivia_qa, SpecRet ########################
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -107,8 +107,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -120,8 +120,8 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -137,8 +137,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -150,8 +150,8 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -167,8 +167,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -178,11 +178,11 @@ python -u eval_rag_serve.py \
 #--retriever \
 #--cache
 
-### Dense + wikitext, SpecRet+P ########################
+### Dense + trivia_qa, SpecRet+P ########################
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -197,8 +197,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -211,8 +211,8 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -227,8 +227,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -241,8 +241,8 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -257,8 +257,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -270,11 +270,11 @@ python -u eval_rag_serve.py \
 #--cache_update_width 256
 
 
-### Dense + wikitext, SpecRet+S ########################
+### Dense + trivia_qa, SpecRet+S ########################
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -289,8 +289,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -303,8 +303,8 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -319,8 +319,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -333,8 +333,8 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -351,8 +351,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -364,11 +364,11 @@ python -u eval_rag_serve.py \
 #--adapt_spec_step
 
 
-### Dense + wikitext, SpecRet+A ########################
+### Dense + trivia_qa, SpecRet+A ########################
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -383,8 +383,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -397,8 +397,8 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -413,8 +413,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -427,8 +427,8 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -443,8 +443,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -455,11 +455,11 @@ python -u eval_rag_serve.py \
 #--cache \
 #--async_retrieval
 
-### Dense + wikitext, SpecRet+PSA ########################
+### Dense + trivia_qa, SpecRet+PSA ########################
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -476,8 +476,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -492,8 +492,8 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -510,8 +510,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -526,8 +526,8 @@ python -u eval_rag_serve.py \
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 0 \
@@ -544,8 +544,8 @@ python -u eval_rag_serve.py \
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
-#--dataset_path wikitext \
-#--dataset_name wikitext-103-v1 \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \

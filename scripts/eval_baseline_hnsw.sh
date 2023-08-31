@@ -1,7 +1,7 @@
 nohup python -u eval_rag_serve.py \
 --model_name gpt2 \
---dataset_path wikitext \
---dataset_name wikitext-103-v1 \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
 --stride 4 \
