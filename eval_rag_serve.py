@@ -157,8 +157,8 @@ def evaluate_logprob_with_retrieved_docs(
         spec_step=1,
 ):
     input_ids = input_ids.to(device)
-
-    print(input_ids.shape)
+    #
+    # print(input_ids.shape)
 
     query_len = input_ids.shape[1]
 
@@ -428,15 +428,15 @@ def evaluate_logprob_with_retrieved_docs(
         # print(f"stride being forwarded: {match_len}")
     total_latency = retrieval_latency + inference_latency - latency_saved_by_async
     # print(input_ids[0, query_len:])
-    print(
-        f"Total Latency: {total_latency}, Inference Latency: {inference_latency}"
-        f", Retrieval Latency: {retrieval_latency}"
-        f", Latency Saved by Asynchronous Retrieval: {latency_saved_by_async}"
-        f", Infer Time: {infer_time}, Retrieval Time: {ret_time}"
-        f", Final Cache Size: {len(cache_retriever)}"
-        f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
-
-    exit(0)
+    # print(
+    #     f"Total Latency: {total_latency}, Inference Latency: {inference_latency}"
+    #     f", Retrieval Latency: {retrieval_latency}"
+    #     f", Latency Saved by Asynchronous Retrieval: {latency_saved_by_async}"
+    #     f", Infer Time: {infer_time}, Retrieval Time: {ret_time}"
+    #     f", Final Cache Size: {len(cache_retriever)}"
+    #     f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
+    #
+    # exit(0)
 
     return total_latency, inference_latency, retrieval_latency
 
