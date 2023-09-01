@@ -15,7 +15,7 @@ python -u eval_rag_serve.py \
 --max_length 128 \
 --retriever
 
-## Latency: 146.59+-2.0264597971112925 s, Forward latency: 5.21+-0.04017268064089792 s, Retrieval latency: 141.38+-2.055109685701427 s
+## Latency: 142.14+-0.9563621046932412 s, Forward latency: 3.35+-0.010179316739618522 s, Retrieval latency: 138.79+-0.9464759137825124 s
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
@@ -42,7 +42,7 @@ python -u eval_rag_serve.py \
 --max_length 128 \
 --retriever
 
-## Latency: 6.27+-0.03837397177953794 s, Forward latency: 5.39+-0.028964606535088644 s, Retrieval latency: 0.89+-0.009466686312274486 s
+## Latency: 4.48+-0.1117924468920217 s, Forward latency: 3.61+-0.08716074040258391 s, Retrieval latency: 0.87+-0.024638376794878986 s
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
@@ -69,7 +69,7 @@ python -u eval_rag_serve.py \
 --max_length 128 \
 --retriever
 
-## Latency: 10.26+-0.19665829054691109 s, Forward latency: 4.11+-0.021997225790452817 s, Retrieval latency: 6.15+-0.17970979590372607 s
+## Latency: 7.41+-1.3360041568006062 s, Forward latency: 2.38+-0.24709095079443363 s, Retrieval latency: 5.03+-1.0907467524674197 s
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \

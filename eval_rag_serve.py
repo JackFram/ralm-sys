@@ -310,9 +310,10 @@ def evaluate_logprob_with_retrieved_docs(
         # generate queries for obtaining ground truth docs
         for i in range(spec_step):
             target_loc = orig_len + stride * (i+1)
+            start_loc = max(0, target_loc-32)
             if target_loc > input_ids.shape[1]:
                 break
-            d = input_ids[0, target_loc-32: target_loc]
+            d = input_ids[0, start_loc: target_loc]
             query_batch.append(d)
 
         if len(query_batch) == 0:
@@ -320,7 +321,7 @@ def evaluate_logprob_with_retrieved_docs(
 
         # retrieve ground truth docs
         start_time = time.time()
-        batch_query_text = tokenizer.batch_decode(torch.stack(query_batch, dim=0), skip_special_tokens=True)
+        batch_query_text = tokenizer.batch_decode(query_batch, skip_special_tokens=True)
         retrieved_batch = retriever.retrieve(batch_query_text, k=verification_retrieval_width)
         single_step_ret_lat = time.time() - start_time
         retrieval_latency += single_step_ret_lat
