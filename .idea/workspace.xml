@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5ae7ef6-4cfa-4dab-b93d-2a253ac312de" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/launch_exp.sh" afterPath="$PROJECT_DIR$/scripts/launch_gpt2.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/run_gpt2.sh" afterPath="$PROJECT_DIR$/scripts/run_gpt2_trivia_qa.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/run_llama_wikitext.sh" afterPath="$PROJECT_DIR$/scripts/run_llama_wiki_qa.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/scripts/run_opt.sh" afterPath="$PROJECT_DIR$/scripts/run_gpt2_wiki_qa.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eval_rag_serve.py" afterPath="$PROJECT_DIR$/eval_rag_serve.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/eval_baseline.sh" afterPath="$PROJECT_DIR$/scripts/eval_baseline.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/launch_llama.sh" afterPath="$PROJECT_DIR$/scripts/launch_llama.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/run_llama_trivia_qa.sh" afterPath="$PROJECT_DIR$/scripts/run_llama_trivia_qa.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="eval_rag_serve.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="eval_rag_serve.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/eval_rag_serve.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7560">
-              <caret line="438" column="13" lean-forward="false" selection-start-line="438" selection-start-column="13" selection-end-line="438" selection-end-column="13" />
+            <state relative-caret-position="3583">
+              <caret line="316" column="0" lean-forward="true" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
               <folding>
                 <element signature="e#0#60#0" expanded="true" />
               </folding>
@@ -68,8 +62,8 @@
       <file leaf-file-name="run_llama_trivia_qa.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/run_llama_trivia_qa.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9576">
-              <caret line="532" column="10" lean-forward="false" selection-start-line="532" selection-start-column="10" selection-end-line="532" selection-end-column="10" />
+            <state relative-caret-position="144">
+              <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -89,17 +83,17 @@
         <entry file="file://$PROJECT_DIR$/scripts/run_gpt2_wiki_qa.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+              <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="run_gpt2_trivia_qa.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="run_gpt2_trivia_qa.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/run_gpt2_trivia_qa.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+            <state relative-caret-position="126">
+              <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -109,7 +103,7 @@
         <entry file="file://$PROJECT_DIR$/scripts/launch_gpt2.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="72">
-              <caret line="4" column="75" lean-forward="true" selection-start-line="4" selection-start-column="75" selection-end-line="4" selection-end-column="75" />
+              <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -118,8 +112,8 @@
       <file leaf-file-name="eval_baseline.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/eval_baseline.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+            <state relative-caret-position="288">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -151,6 +145,7 @@
       <find>512</find>
       <find>meta-llama/Llama-2-7b-hf</find>
       <find>--gpu_id 0</find>
+      <find>tokenizer.eos</find>
     </findStrings>
     <replaceStrings>
       <replace>facebook/opt-1.3b</replace>
@@ -182,14 +177,14 @@
         <option value="$PROJECT_DIR$/scripts/run_opt.sh" />
         <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/scripts/run_llama_wikitext.sh" />
-        <option value="$PROJECT_DIR$/scripts/eval_baseline.sh" />
-        <option value="$PROJECT_DIR$/eval_rag_serve.py" />
         <option value="$PROJECT_DIR$/scripts/run_llama_wikiqa.sh" />
         <option value="$PROJECT_DIR$/scripts/launch_llama.sh" />
         <option value="$PROJECT_DIR$/scripts/run_gpt2_wiki_qa.sh" />
         <option value="$PROJECT_DIR$/scripts/launch_gpt2.sh" />
         <option value="$PROJECT_DIR$/scripts/run_llama_trivia_qa.sh" />
         <option value="$PROJECT_DIR$/scripts/run_gpt2_trivia_qa.sh" />
+        <option value="$PROJECT_DIR$/scripts/eval_baseline.sh" />
+        <option value="$PROJECT_DIR$/eval_rag_serve.py" />
       </list>
     </option>
   </component>
@@ -218,7 +213,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -235,7 +230,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -293,7 +288,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.102859415" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10365369" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -567,7 +562,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="5" column="38" lean-forward="false" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -579,22 +573,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/run_opt.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/run_gpt2.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2970">
-          <caret line="165" column="131" lean-forward="false" selection-start-line="165" selection-start-column="131" selection-end-line="165" selection-end-column="131" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/run_opt.sh" />
+    <entry file="file://$PROJECT_DIR$/scripts/run_gpt2.sh" />
     <entry file="file://$PROJECT_DIR$/ralm/file_utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -602,40 +582,6 @@
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/eval_baseline.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eval_rag_serve.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7560">
-          <caret line="438" column="13" lean-forward="false" selection-start-line="438" selection-start-column="13" selection-end-line="438" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/launch_llama.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="49" lean-forward="false" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/launch_gpt2.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="75" lean-forward="true" selection-start-line="4" selection-start-column="75" selection-end-line="4" selection-end-column="75" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -650,24 +596,58 @@
     <entry file="file://$PROJECT_DIR$/scripts/run_gpt2_wiki_qa.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+          <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/launch_llama.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="49" lean-forward="false" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/launch_gpt2.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/run_llama_trivia_qa.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9576">
-          <caret line="532" column="10" lean-forward="false" selection-start-line="532" selection-start-column="10" selection-end-line="532" selection-end-column="10" />
+        <state relative-caret-position="144">
+          <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/run_gpt2_trivia_qa.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+        <state relative-caret-position="126">
+          <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/eval_baseline.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eval_rag_serve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3583">
+          <caret line="316" column="0" lean-forward="true" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#60#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

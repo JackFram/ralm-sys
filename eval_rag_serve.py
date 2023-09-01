@@ -226,7 +226,10 @@ def evaluate_logprob_with_retrieved_docs(
     iteration = 0
 
     # GENERATION LOOP
-    while input_ids.shape[1] - query_len <  max_new_token_num and tokenizer.eos_token_id not in input_ids[0]:
+    # print(input_ids.shape[1] - query_len)
+    # print(tokenizer.eos_token_id, input_ids[0])
+    # exit(0)
+    while input_ids.shape[1] - query_len <  max_new_token_num and tokenizer.eos_token_id not in input_ids[0, 1:]:
 
         # only update last failed verification if not always update cache
         if args.cache and not args.always_update_cache:
@@ -436,7 +439,6 @@ def evaluate_logprob_with_retrieved_docs(
     #     f", Final Cache Size: {len(cache_retriever)}"
     #     f", Total Speculated: {total_speculated}, Total Verified: {total_verified}, Total Rejected: {total_rejected}")
     #
-    # exit(0)
 
     return total_latency, inference_latency, retrieval_latency
 
