@@ -44,7 +44,7 @@
 #--max_length 128 \
 #--retriever
 
-## Latency: 3.78+-0.09693625647530604 s, Forward latency: 3.08+-0.08470734395049571 s, Retrieval latency: 0.70+-0.012236634044783203 s
+## Latency: 3.78+-0.0969362047530604 s, Forward latency: 3.08+-0.08470734395049571 s, Retrieval latency: 0.70+-0.012236634044783203 s
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
@@ -88,22 +88,22 @@
 
 
 ### Dense + wikitext, SpecRet ########################
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 3 \
---stride 4 \
---spec_step 3 \
---retrieval_type dense \
---max_length 128 \
---retriever \
---cache
+#python -u eval_rag_serve.py \
+#--model_name gpt2-medium \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 3 \
+#--stride 4 \
+#--spec_step 3 \
+#--retrieval_type dense \
+#--max_length 128 \
+#--retriever \
+#--cache
 
-## Latency: 69.83+-0.2867901935831338 s, Forward latency: 4.46+-0.0778325659453558 s, Retrieval latency: 65.37+-0.31874833898817023 s
+## Latency: 69.83+-0.2867901935831338 s, Forward latency: 4.46+-0.077832059453558 s, Retrieval latency: 65.37+-0.31874833898817023 s
 
 #python -u eval_rag_serve.py \
 #--model_name gpt2-medium \
@@ -118,20 +118,20 @@ python -u eval_rag_serve.py \
 #--retriever \
 #--cache
 
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 5 \
---stride 4 \
---spec_step 3 \
---retrieval_type dense_hnsw \
---max_length 128 \
---retriever \
---cache
+#python -u eval_rag_serve.py \
+#--model_name gpt2-medium \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 5 \
+#--stride 4 \
+#--spec_step 3 \
+#--retrieval_type dense_hnsw \
+#--max_length 128 \
+#--retriever \
+#--cache
 
 ## Latency: 7.47+-0.16822105267978735 s, Forward latency: 6.16+-0.11070270891231704 s, Retrieval latency: 1.31+-0.06136350272147419 s
 
@@ -148,20 +148,20 @@ python -u eval_rag_serve.py \
 #--retriever \
 #--cache
 
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 5 \
---stride 4 \
---spec_step 3 \
---retrieval_type sparse \
---max_length 128 \
---retriever \
---cache
+#python -u eval_rag_serve.py \
+#--model_name gpt2-medium \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 5 \
+#--stride 4 \
+#--spec_step 3 \
+#--retrieval_type sparse \
+#--max_length 128 \
+#--retriever \
+#--cache
 
 # Latency: 5.40+-0.03485776728826002 s, Forward latency: 2.63+-0.028329418998782573 s, Retrieval latency: 2.78+-0.017110314775439124 s
 
@@ -193,7 +193,7 @@ python -u eval_rag_serve.py \
 --max_length 128 \
 --retriever \
 --cache \
---cache_update_width 256
+--cache_update_width 20
 
 ## Latency: 66.64+-0.22815377206133886 s, Forward latency: 4.24+-0.022850053853693885 s, Retrieval latency: 62.40+-0.20768499296761925 s
 
@@ -209,7 +209,7 @@ python -u eval_rag_serve.py \
 #--max_length 128 \
 #--retriever \
 #--cache \
-#--cache_update_width 256
+#--cache_update_width 20
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
@@ -225,7 +225,7 @@ python -u eval_rag_serve.py \
 --max_length 128 \
 --retriever \
 --cache \
---cache_update_width 256
+--cache_update_width 20
 
 ## Latency: 6.96+-0.6399507037702747 s, Forward latency: 5.75+-0.5136326962448121 s, Retrieval latency: 1.21+-0.13249454932003935 s
 
@@ -241,7 +241,7 @@ python -u eval_rag_serve.py \
 #--max_length 128 \
 #--retriever \
 #--cache \
-#--cache_update_width 256
+#--cache_update_width 20
 
 python -u eval_rag_serve.py \
 --model_name gpt2-medium \
@@ -257,7 +257,7 @@ python -u eval_rag_serve.py \
 --max_length 128 \
 --retriever \
 --cache \
---cache_update_width 256
+--cache_update_width 20
 
 ## Latency: 6.91+-0.1392670084931985 s, Forward latency: 4.21+-0.08878659543703624 s, Retrieval latency: 2.70+-0.05142437975368174 s
 
@@ -273,7 +273,7 @@ python -u eval_rag_serve.py \
 #--max_length 128 \
 #--retriever \
 #--cache \
-#--cache_update_width 256
+#--cache_update_width 20
 
 
 ### Dense + wikitext, SpecRet+S ########################
@@ -286,7 +286,7 @@ python -u eval_rag_serve.py \
 --gpu_id 1 \
 --trial_num 3 \
 --stride 4 \
---spec_step 3 \
+--spec_step 1 \
 --retrieval_type dense \
 --max_length 128 \
 --retriever \
@@ -318,7 +318,7 @@ python -u eval_rag_serve.py \
 --gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
---spec_step 3 \
+--spec_step 1 \
 --retrieval_type dense_hnsw \
 --max_length 128 \
 --retriever \
@@ -350,7 +350,7 @@ python -u eval_rag_serve.py \
 --gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
---spec_step 3 \
+--spec_step 1 \
 --retrieval_type sparse \
 --max_length 128 \
 --retriever \
@@ -375,21 +375,21 @@ python -u eval_rag_serve.py \
 
 
 ### Dense + wikitext, SpecRet+A ########################
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 3 \
---stride 4 \
---spec_step 3 \
---retrieval_type dense \
---max_length 128 \
---retriever \
---cache \
---async_retrieval
+#python -u eval_rag_serve.py \
+#--model_name gpt2-medium \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 3 \
+#--stride 4 \
+#--spec_step 3 \
+#--retrieval_type dense \
+#--max_length 128 \
+#--retriever \
+#--cache \
+#--async_retrieval
 
 ## Latency: 70.40+-0.7829149530986377 s, Forward latency: 4.53+-0.03386751513147094 s, Retrieval latency: 66.54+-0.7973239966386328 s
 
@@ -407,21 +407,21 @@ python -u eval_rag_serve.py \
 #--cache \
 #--async_retrieval
 
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 5 \
---stride 4 \
---spec_step 3 \
---retrieval_type dense_hnsw \
---max_length 128 \
---retriever \
---cache \
---async_retrieval
+#python -u eval_rag_serve.py \
+#--model_name gpt2-medium \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 5 \
+#--stride 4 \
+#--spec_step 3 \
+#--retrieval_type dense_hnsw \
+#--max_length 128 \
+#--retriever \
+#--cache \
+#--async_retrieval
 
 ## Latency: 6.94+-0.8481756369454304 s, Forward latency: 5.99+-0.6962629761120461 s, Retrieval latency: 1.26+-0.20154539303767763 s
 
@@ -439,21 +439,21 @@ python -u eval_rag_serve.py \
 #--cache \
 #--async_retrieval
 
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 5 \
---stride 4 \
---spec_step 3 \
---retrieval_type sparse \
---max_length 128 \
---retriever \
---cache \
---async_retrieval
+#python -u eval_rag_serve.py \
+#--model_name gpt2-medium \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 5 \
+#--stride 4 \
+#--spec_step 3 \
+#--retrieval_type sparse \
+#--max_length 128 \
+#--retriever \
+#--cache \
+#--async_retrieval
 
 ## Latency: 5.04+-0.1258409291400635 s, Forward latency: 2.69+-0.050936613190481275 s, Retrieval latency: 2.83+-0.08466701088868059 s
 
@@ -481,12 +481,12 @@ python -u eval_rag_serve.py \
 --gpu_id 1 \
 --trial_num 3 \
 --stride 4 \
---spec_step 3 \
+--spec_step 1 \
 --retrieval_type dense \
 --max_length 128 \
 --retriever \
 --cache \
---cache_update_width 256 \
+--cache_update_width 20 \
 --adapt_spec_step \
 --async_retrieval
 
@@ -504,7 +504,7 @@ python -u eval_rag_serve.py \
 #--max_length 128 \
 #--retriever \
 #--cache \
-#--cache_update_width 256 \
+#--cache_update_width 20 \
 #--adapt_spec_step \
 #--async_retrieval
 
@@ -517,12 +517,12 @@ python -u eval_rag_serve.py \
 --gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
---spec_step 3 \
+--spec_step 1 \
 --retrieval_type dense_hnsw \
 --max_length 128 \
 --retriever \
 --cache \
---cache_update_width 256 \
+--cache_update_width 20 \
 --adapt_spec_step \
 --async_retrieval
 
@@ -540,7 +540,7 @@ python -u eval_rag_serve.py \
 #--max_length 128 \
 #--retriever \
 #--cache \
-#--cache_update_width 256 \
+#--cache_update_width 20 \
 #--adapt_spec_step \
 #--async_retrieval
 
@@ -553,12 +553,12 @@ python -u eval_rag_serve.py \
 --gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
---spec_step 3 \
+--spec_step 1 \
 --retrieval_type sparse \
 --max_length 128 \
 --retriever \
 --cache \
---cache_update_width 256 \
+--cache_update_width 20 \
 --adapt_spec_step \
 --async_retrieval
 
@@ -576,6 +576,6 @@ python -u eval_rag_serve.py \
 #--max_length 128 \
 #--retriever \
 #--cache \
-#--cache_update_width 256 \
+#--cache_update_width 20 \
 #--adapt_spec_step \
 #--async_retrieval

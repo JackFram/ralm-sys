@@ -1,97 +1,93 @@
 #!/usr/bin/env bash
 
 
-### Dense + wikitext, B ########################
-#python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
-#--dataset_split validation \
-#--output_dir ./results \
-#--gpu_id 1 \
-#--trial_num 3 \
-#--stride 4 \
-#--spec_step 1 \
-#--retrieval_type dense \
-#--max_length 128 \
-#--retriever
-
-## Latency: 144.82+-0.8963924214542842 s, Forward latency: 3.40+-0.007844510562412439 s, Retrieval latency: 141.43+-0.8890987892221209 s
-
-#python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
-#--dataset_split validation \
-#--output_dir ./results \
-#--stride 8 \
-#--spec_step 1 \
-#--retrieval_type dense \
-#--max_length 128 \
-#--retriever
-
-#python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
-#--dataset_split validation \
-#--output_dir ./results \
-#--gpu_id 1 \
-#--trial_num 5 \
-#--stride 4 \
-#--spec_step 1 \
-#--retrieval_type dense_hnsw \
-#--max_length 128 \
-#--retriever
-
-## Latency: 3.78+-0.09693625647530604 s, Forward latency: 3.08+-0.08470734395049571 s, Retrieval latency: 0.70+-0.012236634044783203 s
-
-#python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
-#--dataset_split validation \
-#--output_dir ./results \
-#--stride 8 \
-#--spec_step 1 \
-#--retrieval_type dense_hnsw \
-#--max_length 128 \
-#--retriever
-
-#python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
-#--dataset_split validation \
-#--output_dir ./results \
-#--gpu_id 1 \
-#--trial_num 5 \
-#--stride 4 \
-#--spec_step 1 \
-#--retrieval_type sparse \
-#--max_length 128 \
-#--retriever
-
-## Latency: 6.80+-0.09034510615800556 s, Forward latency: 2.16+-0.033355837936619954 s, Retrieval latency: 4.64+-0.06155874042016144 s
-
-#python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
-#--dataset_split validation \
-#--output_dir ./results \
-#--stride 8 \
-#--spec_step 1 \
-#--retrieval_type sparse \
-#--max_length 128 \
-#--retriever
-
-
-### Dense + wikitext, SpecRet ########################
+### Dense + web_questions, B ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
+--dataset_split validation \
+--output_dir ./results \
+--gpu_id 1 \
+--trial_num 3 \
+--stride 4 \
+--spec_step 1 \
+--retrieval_type dense \
+--max_length 128 \
+--retriever
+
+## Latency: 146.52+-1.9272179572236454 s, Forward latency: 6.98+-0.007740714526122532 s, Retrieval latency: 139.54+-1.933423948733668 s
+
+#python -u eval_rag_serve.py \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
+#--dataset_split validation \
+#--output_dir ./results \
+#--stride 8 \
+#--spec_step 1 \
+#--retrieval_type dense \
+#--max_length 128 \
+#--retriever
+
+python -u eval_rag_serve.py \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
+--dataset_split validation \
+--output_dir ./results \
+--gpu_id 1 \
+--trial_num 5 \
+--stride 4 \
+--spec_step 1 \
+--retrieval_type dense_hnsw \
+--max_length 128 \
+--retriever
+
+## Latency: 7.97+-0.06301570383356077 s, Forward latency: 7.11+-0.052952057571694446 s, Retrieval latency: 0.86+-0.011388798821622505 s
+
+#python -u eval_rag_serve.py \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
+#--dataset_split validation \
+#--output_dir ./results \
+#--stride 8 \
+#--spec_step 1 \
+#--retrieval_type dense_hnsw \
+#--max_length 128 \
+#--retriever
+
+python -u eval_rag_serve.py \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
+--dataset_split validation \
+--output_dir ./results \
+--gpu_id 1 \
+--trial_num 5 \
+--stride 4 \
+--spec_step 1 \
+--retrieval_type sparse \
+--max_length 128 \
+--retriever
+
+## Latency: 10.55+-0.07245463798394786 s, Forward latency: 5.89+-0.047691387478389476 s, Retrieval latency: 4.67+-0.07196639419347442 s
+
+#python -u eval_rag_serve.py \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
+#--dataset_split validation \
+#--output_dir ./results \
+#--stride 8 \
+#--spec_step 1 \
+#--retrieval_type sparse \
+#--max_length 128 \
+#--retriever
+
+
+### Dense + web_questions, SpecRet ########################
+python -u eval_rag_serve.py \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -103,12 +99,12 @@ python -u eval_rag_serve.py \
 --retriever \
 --cache
 
-## Latency: 69.83+-0.2867901935831338 s, Forward latency: 4.46+-0.0778325659453558 s, Retrieval latency: 65.37+-0.31874833898817023 s
+## Latency: 87.20+-1.8304597280491746 s, Forward latency: 10.94+-0.19146222392712312 s, Retrieval latency: 76.26+-1.6435051131942844 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -119,9 +115,8 @@ python -u eval_rag_serve.py \
 #--cache
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -133,12 +128,12 @@ python -u eval_rag_serve.py \
 --retriever \
 --cache
 
-## Latency: 7.47+-0.16822105267978735 s, Forward latency: 6.16+-0.11070270891231704 s, Retrieval latency: 1.31+-0.06136350272147419 s
+## Latency: 13.44+-0.37540151390163784 s, Forward latency: 12.16+-0.339741552912616 s, Retrieval latency: 1.28+-0.03735757937093578 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -149,9 +144,8 @@ python -u eval_rag_serve.py \
 #--cache
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -163,12 +157,12 @@ python -u eval_rag_serve.py \
 --retriever \
 --cache
 
-# Latency: 5.40+-0.03485776728826002 s, Forward latency: 2.63+-0.028329418998782573 s, Retrieval latency: 2.78+-0.017110314775439124 s
+# Latency: 11.02+-0.31818711699179236 s, Forward latency: 8.21+-0.19069163060389233 s, Retrieval latency: 2.81+-0.14209414135674842 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -178,11 +172,10 @@ python -u eval_rag_serve.py \
 #--retriever \
 #--cache
 
-### Dense + wikitext, SpecRet+P ########################
+### Dense + web_questions, SpecRet+P ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -195,12 +188,12 @@ python -u eval_rag_serve.py \
 --cache \
 --cache_update_width 256
 
-## Latency: 66.64+-0.22815377206133886 s, Forward latency: 4.24+-0.022850053853693885 s, Retrieval latency: 62.40+-0.20768499296761925 s
+## Latency: 94.15+-1.6009502554063049 s, Forward latency: 19.37+-0.41717290562221065 s, Retrieval latency: 74.78+-1.2373995823680999 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -212,9 +205,8 @@ python -u eval_rag_serve.py \
 #--cache_update_width 256
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -227,12 +219,12 @@ python -u eval_rag_serve.py \
 --cache \
 --cache_update_width 256
 
-## Latency: 6.96+-0.6399507037702747 s, Forward latency: 5.75+-0.5136326962448121 s, Retrieval latency: 1.21+-0.13249454932003935 s
+## Latency: 26.44+-3.111548095300848 s, Forward latency: 21.79+-2.2938142928688663 s, Retrieval latency: 4.64+-0.8206310271159845 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -244,9 +236,8 @@ python -u eval_rag_serve.py \
 #--cache_update_width 256
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -259,12 +250,12 @@ python -u eval_rag_serve.py \
 --cache \
 --cache_update_width 256
 
-## Latency: 6.91+-0.1392670084931985 s, Forward latency: 4.21+-0.08878659543703624 s, Retrieval latency: 2.70+-0.05142437975368174 s
+## Latency: 13.35+-0.8163669140234814 s, Forward latency: 10.01+-0.4056945531667077 s, Retrieval latency: 3.34+-0.424778138411866 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -276,11 +267,10 @@ python -u eval_rag_serve.py \
 #--cache_update_width 256
 
 
-### Dense + wikitext, SpecRet+S ########################
+### Dense + web_questions, SpecRet+S ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -293,12 +283,12 @@ python -u eval_rag_serve.py \
 --cache \
 --adapt_spec_step
 
-## Latency: 62.61+-0.9235264876179446 s, Forward latency: 5.96+-0.07104863015836341 s, Retrieval latency: 56.65+-0.8524840317804455 s
+## Latency: 84.85+-2.3502292471055504 s, Forward latency: 12.59+-0.20672002739114384 s, Retrieval latency: 72.26+-2.1459022366375042 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -310,9 +300,8 @@ python -u eval_rag_serve.py \
 #--adapt_spec_step
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -325,12 +314,12 @@ python -u eval_rag_serve.py \
 --cache \
 --adapt_spec_step
 
-## Latency: 4.47+-0.6369016171830293 s, Forward latency: 3.61+-0.4987242808228567 s, Retrieval latency: 0.86+-0.13874398484456257 s
+## Latency: 8.60+-0.06564322082832348 s, Forward latency: 7.60+-0.043215472245205895 s, Retrieval latency: 1.00+-0.03319105951077234 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -342,9 +331,8 @@ python -u eval_rag_serve.py \
 #--adapt_spec_step
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -357,12 +345,12 @@ python -u eval_rag_serve.py \
 --cache \
 --adapt_spec_step
 
-# Latency: 5.24+-0.0831591084611101 s, Forward latency: 2.44+-0.034668483919216384 s, Retrieval latency: 2.80+-0.05082449324673874 s
+# Latency: 10.30+-0.13796470331557897 s, Forward latency: 6.75+-0.05434781704908004 s, Retrieval latency: 3.56+-0.09060048178894892 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -374,11 +362,10 @@ python -u eval_rag_serve.py \
 #--adapt_spec_step
 
 
-### Dense + wikitext, SpecRet+A ########################
+### Dense + web_questions, SpecRet+A ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -391,12 +378,12 @@ python -u eval_rag_serve.py \
 --cache \
 --async_retrieval
 
-## Latency: 70.40+-0.7829149530986377 s, Forward latency: 4.53+-0.03386751513147094 s, Retrieval latency: 66.54+-0.7973239966386328 s
+## Latency: 85.74+-1.9456388665357232 s, Forward latency: 10.91+-0.13267200077536878 s, Retrieval latency: 75.80+-1.7892406068696647 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -408,9 +395,8 @@ python -u eval_rag_serve.py \
 #--async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -423,12 +409,12 @@ python -u eval_rag_serve.py \
 --cache \
 --async_retrieval
 
-## Latency: 6.94+-0.8481756369454304 s, Forward latency: 5.99+-0.6962629761120461 s, Retrieval latency: 1.26+-0.20154539303767763 s
+## Latency: 13.28+-0.17767210287876872 s, Forward latency: 12.23+-0.1733229755201617 s, Retrieval latency: 1.29+-0.01621748154955401 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -440,9 +426,8 @@ python -u eval_rag_serve.py \
 #--async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -455,12 +440,12 @@ python -u eval_rag_serve.py \
 --cache \
 --async_retrieval
 
-## Latency: 5.04+-0.1258409291400635 s, Forward latency: 2.69+-0.050936613190481275 s, Retrieval latency: 2.83+-0.08466701088868059 s
+## Latency: 10.66+-0.12037866903162557 s, Forward latency: 8.43+-0.09056789749689967 s, Retrieval latency: 2.91+-0.07891911944664473 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -471,11 +456,10 @@ python -u eval_rag_serve.py \
 #--cache \
 #--async_retrieval
 
-### Dense + wikitext, SpecRet+PSA ########################
+### Dense + web_questions, SpecRet+PSA ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -490,12 +474,12 @@ python -u eval_rag_serve.py \
 --adapt_spec_step \
 --async_retrieval
 
-## Latency: 56.95+-1.3454742629116028 s, Forward latency: 5.48+-0.09248030740521111 s, Retrieval latency: 51.92+-1.26278133233326 s
+## Latency: 87.34+-4.637677672708304 s, Forward latency: 18.89+-0.9779857965781327 s, Retrieval latency: 70.18+-3.714321826878325 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -509,9 +493,8 @@ python -u eval_rag_serve.py \
 #--async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -526,12 +509,12 @@ python -u eval_rag_serve.py \
 --adapt_spec_step \
 --async_retrieval
 
-## Latency: 3.86+-0.3113815848329637 s, Forward latency: 3.50+-0.2716794923643243 s, Retrieval latency: 0.79+-0.08342243404304413 s
+## Latency: 14.96+-1.3490984429851196 s, Forward latency: 12.81+-1.1163365508605694 s, Retrieval latency: 4.78+-0.6184784064786246 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -545,9 +528,8 @@ python -u eval_rag_serve.py \
 #--async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path trivia_qa \
---dataset_name rc \
+--model_name meta-llama/Llama-2-7b-hf \
+--dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
@@ -562,12 +544,12 @@ python -u eval_rag_serve.py \
 --adapt_spec_step \
 --async_retrieval
 
-## Latency: 5.91+-0.03126278615224662 s, Forward latency: 3.75+-0.02868480058748641 s, Retrieval latency: 3.75+-0.018223892215796022 s
+## Latency: 10.42+-0.7480661799060846 s, Forward latency: 8.10+-0.42496799308973104 s, Retrieval latency: 5.23+-0.5594922679705225 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path trivia_qa \
-#--dataset_name rc \
+#--model_name meta-llama/Llama-2-7b-hf \
+#--dataset_path web_questions \
+#
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
