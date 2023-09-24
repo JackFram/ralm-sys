@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 
-### Dense + wiki_qa, B ########################
+### Dense + wikitext, B ########################
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
-#--gpu_id 0 \
+#--gpu_id 1 \
 #--trial_num 3 \
 #--stride 4 \
 #--spec_step 1 \
@@ -15,12 +16,12 @@
 #--max_length 128 \
 #--retriever
 
-## Latency: 142.14+-0.9563621046932412 s, Forward latency: 3.35+-0.010179316739618522 s, Retrieval latency: 138.79+-0.9464759137825124 s
+## Latency: 147.76+-2.8003093508659456 s, Forward latency: 7.16+-0.019016542380743236 s, Retrieval latency: 140.60+-2.8106175335422092 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -30,11 +31,12 @@
 #--retriever
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
-#--gpu_id 0 \
+#--gpu_id 1 \
 #--trial_num 5 \
 #--stride 4 \
 #--spec_step 1 \
@@ -42,12 +44,12 @@
 #--max_length 128 \
 #--retriever
 
-## Latency: 4.48+-0.1117924468920217 s, Forward latency: 3.61+-0.08716074040258391 s, Retrieval latency: 0.87+-0.024638376794878986 s
+## Latency: 8.68+-0.1047241484692095 s, Forward latency: 7.63+-0.090898668251698 s, Retrieval latency: 1.06+-0.0170062308170559 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -57,11 +59,12 @@
 #--retriever
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
-#--gpu_id 0 \
+#--gpu_id 1 \
 #--trial_num 5 \
 #--stride 4 \
 #--spec_step 1 \
@@ -69,12 +72,12 @@
 #--max_length 128 \
 #--retriever
 
-## Latency: 7.41+-1.3360041568006062 s, Forward latency: 2.38+-0.24709095079443363 s, Retrieval latency: 5.03+-1.0907467524674197 s
+## Latency: 11.06+-0.2514447324317352 s, Forward latency: 6.04+-0.034551543552591824 s, Retrieval latency: 5.02+-0.25442629953798757 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -84,13 +87,14 @@
 #--retriever
 
 
-### Dense + wiki_qa, SpecRet ########################
+### Dense + wikitext, SpecRet ########################
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
-#--gpu_id 0 \
+#--gpu_id 1 \
 #--trial_num 3 \
 #--stride 4 \
 #--spec_step 3 \
@@ -99,12 +103,12 @@
 #--retriever \
 #--cache
 
-## Latency: 69.82+-0.22541434610927 s, Forward latency: 4.39+-0.07254579676168077 s, Retrieval latency: 65.42+-0.27444192354994745 s
+## Latency: 90.44+-8.016504918634833 s, Forward latency: 12.43+-1.2904246306007936 s, Retrieval latency: 78.01+-6.7652113301995715 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -115,11 +119,12 @@
 #--cache
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
-#--gpu_id 0 \
+#--gpu_id 1 \
 #--trial_num 5 \
 #--stride 4 \
 #--spec_step 3 \
@@ -128,12 +133,12 @@
 #--retriever \
 #--cache
 
-## Latency: 7.26+-0.07659719028852169 s, Forward latency: 6.01+-0.05843010519308686 s, Retrieval latency: 1.24+-0.02249281282666829 s
+## Latency: 14.23+-0.3573774920090918 s, Forward latency: 12.79+-0.3186719951671124 s, Retrieval latency: 1.44+-0.03888446429835448 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -144,11 +149,12 @@
 #--cache
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
-#--gpu_id 0 \
+#--gpu_id 1 \
 #--trial_num 5 \
 #--stride 4 \
 #--spec_step 3 \
@@ -157,12 +163,12 @@
 #--retriever \
 #--cache
 
-# Latency: 5.18+-0.13746164676321018 s, Forward latency: 2.55+-0.04307013922173696 s, Retrieval latency: 2.63+-0.09445325043361012 s
+# Latency: 10.79+-0.20903272074361817 s, Forward latency: 8.04+-0.09176543879267866 s, Retrieval latency: 2.75+-0.18343547653407422 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -172,13 +178,14 @@
 #--retriever \
 #--cache
 
-### Dense + wiki_qa, SpecRet+P ########################
+### Dense + wikitext, SpecRet+P ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path wiki_qa \
+--model_name facebook/opt-1.3b \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
---gpu_id 0 \
+--gpu_id 1 \
 --trial_num 3 \
 --stride 4 \
 --spec_step 3 \
@@ -188,12 +195,12 @@ python -u eval_rag_serve.py \
 --cache \
 --cache_update_width 20
 
-## Latency: 68.22+-0.18782661223856637 s, Forward latency: 4.27+-0.03684711290775506 s, Retrieval latency: 63.95+-0.1510915298703534 s
+## Latency: 81.86+-0.7657852861740794 s, Forward latency: 10.41+-0.11412921459287349 s, Retrieval latency: 71.45+-0.6521488771902965 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -205,11 +212,12 @@ python -u eval_rag_serve.py \
 #--cache_update_width 256
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path wiki_qa \
+--model_name facebook/opt-1.3b \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
---gpu_id 0 \
+--gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
 --spec_step 3 \
@@ -219,12 +227,12 @@ python -u eval_rag_serve.py \
 --cache \
 --cache_update_width 20
 
-## Latency: 6.92+-0.10120199053730514 s, Forward latency: 5.67+-0.08860318750673103 s, Retrieval latency: 1.25+-0.014594082896263674 s
+## Latency: 14.21+-0.3036432984864429 s, Forward latency: 12.76+-0.27434968413086236 s, Retrieval latency: 1.44+-0.02993763694040956 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -236,11 +244,12 @@ python -u eval_rag_serve.py \
 #--cache_update_width 256
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path wiki_qa \
+--model_name facebook/opt-1.3b \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
---gpu_id 0 \
+--gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
 --spec_step 3 \
@@ -250,12 +259,12 @@ python -u eval_rag_serve.py \
 --cache \
 --cache_update_width 20
 
-## Latency: 5.23+-0.23512005851359036 s, Forward latency: 2.61+-0.08808659971063411 s, Retrieval latency: 2.62+-0.14704939144710047 s
+## Latency: 10.66+-0.23700390701833846 s, Forward latency: 8.04+-0.09540831375125369 s, Retrieval latency: 2.62+-0.18304896016454794 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -267,13 +276,14 @@ python -u eval_rag_serve.py \
 #--cache_update_width 256
 
 
-### Dense + wiki_qa, SpecRet+S ########################
+### Dense + wikitext, SpecRet+S ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path wiki_qa \
+--model_name facebook/opt-1.3b \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
---gpu_id 0 \
+--gpu_id 1 \
 --trial_num 3 \
 --stride 4 \
 --spec_step 1 \
@@ -283,12 +293,12 @@ python -u eval_rag_serve.py \
 --cache \
 --adapt_spec_step
 
-## Latency: 62.72+-0.4805022506355928 s, Forward latency: 5.47+-0.03564470388442374 s, Retrieval latency: 57.25+-0.4551686359820786 s
+## Latency: 84.28+-2.93988453280129 s, Forward latency: 11.99+-0.28312023587880436 s, Retrieval latency: 72.28+-2.672796204589914 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -300,11 +310,12 @@ python -u eval_rag_serve.py \
 #--adapt_spec_step
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path wiki_qa \
+--model_name facebook/opt-1.3b \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
---gpu_id 0 \
+--gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
 --spec_step 1 \
@@ -314,12 +325,12 @@ python -u eval_rag_serve.py \
 --cache \
 --adapt_spec_step
 
-## Latency: 4.59+-0.28729419704443926 s, Forward latency: 3.72+-0.2534741242304527 s, Retrieval latency: 0.87+-0.03623281269178978 s
+## Latency: 8.16+-0.09966282290644442 s, Forward latency: 7.20+-0.08332370731805508 s, Retrieval latency: 0.96+-0.027852311266824973 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -331,11 +342,12 @@ python -u eval_rag_serve.py \
 #--adapt_spec_step
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path wiki_qa \
+--model_name facebook/opt-1.3b \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
---gpu_id 0 \
+--gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
 --spec_step 1 \
@@ -345,12 +357,12 @@ python -u eval_rag_serve.py \
 --cache \
 --adapt_spec_step
 
-# Latency: 5.62+-0.9672593622585209 s, Forward latency: 2.58+-0.3438175687888953 s, Retrieval latency: 3.04+-0.6234678259423776 s
+# Latency: 10.18+-0.0877560909082933 s, Forward latency: 6.43+-0.02769151354992203 s, Retrieval latency: 3.74+-0.07795372580140514 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -362,13 +374,14 @@ python -u eval_rag_serve.py \
 #--adapt_spec_step
 
 
-### Dense + wiki_qa, SpecRet+A ########################
+### Dense + wikitext, SpecRet+A ########################
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
-#--gpu_id 0 \
+#--gpu_id 1 \
 #--trial_num 3 \
 #--stride 4 \
 #--spec_step 3 \
@@ -378,12 +391,10 @@ python -u eval_rag_serve.py \
 #--cache \
 #--async_retrieval
 
-## Latency: 69.92+-1.056193837759935 s, Forward latency: 4.33+-0.07169973755743517 s, Retrieval latency: 66.27+-1.0384617909008507 s
-
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -395,11 +406,12 @@ python -u eval_rag_serve.py \
 #--async_retrieval
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
-#--gpu_id 0 \
+#--gpu_id 1 \
 #--trial_num 5 \
 #--stride 4 \
 #--spec_step 3 \
@@ -409,12 +421,12 @@ python -u eval_rag_serve.py \
 #--cache \
 #--async_retrieval
 
-## Latency: 6.50+-0.5466259984186265 s, Forward latency: 5.63+-0.427686538348495 s, Retrieval latency: 1.24+-0.17301663735230174 s
+## Latency: 18.35+-1.1178822732456304 s, Forward latency: 16.50+-0.9436333423308263 s, Retrieval latency: 2.19+-0.22169315131832015 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -426,11 +438,12 @@ python -u eval_rag_serve.py \
 #--async_retrieval
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
-#--gpu_id 0 \
+#--gpu_id 1 \
 #--trial_num 5 \
 #--stride 4 \
 #--spec_step 3 \
@@ -440,12 +453,12 @@ python -u eval_rag_serve.py \
 #--cache \
 #--async_retrieval
 
-## Latency: 5.34+-0.8908068495290679 s, Forward latency: 2.72+-0.3003277750705263 s, Retrieval latency: 3.04+-0.643340786354065 s
+## Latency: 10.16+-0.18775015848531493 s, Forward latency: 8.06+-0.09979344890848892 s, Retrieval latency: 2.89+-0.14763331725046944 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -456,13 +469,14 @@ python -u eval_rag_serve.py \
 #--cache \
 #--async_retrieval
 
-### Dense + wiki_qa, SpecRet+PSA ########################
+### Dense + wikitext, SpecRet+PSA ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path wiki_qa \
+--model_name facebook/opt-1.3b \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
---gpu_id 0 \
+--gpu_id 1 \
 --trial_num 3 \
 --stride 4 \
 --spec_step 1 \
@@ -474,12 +488,12 @@ python -u eval_rag_serve.py \
 --adapt_spec_step \
 --async_retrieval
 
-## Latency: 58.35+-0.31997250856167964 s, Forward latency: 5.31+-0.03290253298450683 s, Retrieval latency: 53.48+-0.2989013668076626 s
+## Latency: 82.03+-2.7398756477835566 s, Forward latency: 12.00+-0.22612486674241747 s, Retrieval latency: 70.98+-2.557707528829578 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -493,11 +507,12 @@ python -u eval_rag_serve.py \
 #--async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path wiki_qa \
+--model_name facebook/opt-1.3b \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
---gpu_id 0 \
+--gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
 --spec_step 1 \
@@ -509,12 +524,12 @@ python -u eval_rag_serve.py \
 --adapt_spec_step \
 --async_retrieval
 
-## Latency: 4.24+-0.1421447111375271 s, Forward latency: 3.92+-0.13938425632658996 s, Retrieval latency: 0.92+-0.032343972890480674 s
+## Latency: 7.91+-0.03873930449013175 s, Forward latency: 7.35+-0.035455502282286264 s, Retrieval latency: 1.14+-0.024710051908193406 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \
@@ -528,11 +543,12 @@ python -u eval_rag_serve.py \
 #--async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path wiki_qa \
+--model_name facebook/opt-1.3b \
+--dataset_path trivia_qa \
+--dataset_name rc \
 --dataset_split validation \
 --output_dir ./results \
---gpu_id 0 \
+--gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
 --spec_step 1 \
@@ -544,12 +560,12 @@ python -u eval_rag_serve.py \
 --adapt_spec_step \
 --async_retrieval
 
-## Latency: 4.49+-0.0937771080449505 s, Forward latency: 2.33+-0.03423576971866768 s, Retrieval latency: 2.99+-0.0693528187109897 s
+## Latency: 8.09+-0.1865906611880987 s, Forward latency: 6.14+-0.08953771211415568 s, Retrieval latency: 4.41+-0.14062663626193833 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
-#--dataset_path wiki_qa \
-#
+#--model_name facebook/opt-1.3b \
+#--dataset_path trivia_qa \
+#--dataset_name rc \
 #--dataset_split validation \
 #--output_dir ./results \
 #--stride 8 \

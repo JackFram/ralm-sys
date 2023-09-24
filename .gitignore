@@ -7,3 +7,5 @@ wikipedia-dpr-hnsw/*
 *.out
 *.numbers
 results/*
+plot/*
+figures/*

@@ -103,7 +103,7 @@ python -u eval_rag_serve.py \
 --retriever \
 --cache
 
-## Latency: 90.44+-8.016504918634833 s, Forward latency: 12.43+-1.2904246306007936 s, Retrieval latency: 78.01+-6.7652113301995715 s
+## Latency: 90.44+-2.016504918634833 s, Forward latency: 12.43+-1.2904246306007936 s, Retrieval latency: 78.01+-6.7652113301995715 s
 
 #python -u eval_rag_serve.py \
 #--model_name meta-llama/Llama-2-7b-hf \
@@ -390,6 +390,8 @@ python -u eval_rag_serve.py \
 --retriever \
 --cache \
 --async_retrieval
+
+## Latency: 77.39+-1.119537268904064 s, Forward latency: 10.55+-0.1580613772229268 s, Retrieval latency: 67.76+-0.9702462489799301 s
 
 #python -u eval_rag_serve.py \
 #--model_name meta-llama/Llama-2-7b-hf \

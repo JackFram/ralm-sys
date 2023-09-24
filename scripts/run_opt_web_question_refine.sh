@@ -2,23 +2,23 @@
 
 
 ### Dense + web_questions, B ########################
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path web_questions \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 3 \
---stride 4 \
---spec_step 1 \
---retrieval_type dense \
---max_length 128 \
---retriever
+#python -u eval_rag_serve.py \
+#--model_name facebook/opt-1.3b \
+#--dataset_path web_questions \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 3 \
+#--stride 4 \
+#--spec_step 1 \
+#--retrieval_type dense \
+#--max_length 128 \
+#--retriever
 
-## Latency: 141.38+-1.5066394872035116 s, Forward latency: 3.19+-0.004727942677447234 s, Retrieval latency: 138.19+-1.5049434623405007 s
+## Latency: 146.52+-1.9272179572236454 s, Forward latency: 6.98+-0.007740714526122532 s, Retrieval latency: 139.54+-1.933423948733668 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -29,23 +29,23 @@ python -u eval_rag_serve.py \
 #--max_length 128 \
 #--retriever
 
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path web_questions \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 5 \
---stride 4 \
---spec_step 1 \
---retrieval_type dense_hnsw \
---max_length 128 \
---retriever
+#python -u eval_rag_serve.py \
+#--model_name facebook/opt-1.3b \
+#--dataset_path web_questions \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 5 \
+#--stride 4 \
+#--spec_step 1 \
+#--retrieval_type dense_hnsw \
+#--max_length 128 \
+#--retriever
 
-## Latency: 4.50+-0.41055136857581626 s, Forward latency: 3.62+-0.32774227244356663 s, Retrieval latency: 0.88+-0.08696689303989008 s
+## Latency: 7.97+-0.06301570383356077 s, Forward latency: 7.11+-0.052952057571694446 s, Retrieval latency: 0.86+-0.011388798821622505 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -56,23 +56,23 @@ python -u eval_rag_serve.py \
 #--max_length 128 \
 #--retriever
 
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path web_questions \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 5 \
---stride 4 \
---spec_step 1 \
---retrieval_type sparse \
---max_length 128 \
---retriever
+#python -u eval_rag_serve.py \
+#--model_name facebook/opt-1.3b \
+#--dataset_path web_questions \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 5 \
+#--stride 4 \
+#--spec_step 1 \
+#--retrieval_type sparse \
+#--max_length 128 \
+#--retriever
 
-## Latency: 7.03+-1.154611791330397 s, Forward latency: 2.11+-0.21427946602674933 s, Retrieval latency: 4.91+-0.9403468156197738 s
+## Latency: 10.55+-0.07245463798394786 s, Forward latency: 5.89+-0.047691387478389476 s, Retrieval latency: 4.67+-0.07196639419347442 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -85,24 +85,24 @@ python -u eval_rag_serve.py \
 
 
 ### Dense + web_questions, SpecRet ########################
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path web_questions \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 3 \
---stride 4 \
---spec_step 3 \
---retrieval_type dense \
---max_length 128 \
---retriever \
---cache
+#python -u eval_rag_serve.py \
+#--model_name facebook/opt-1.3b \
+#--dataset_path web_questions \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 3 \
+#--stride 4 \
+#--spec_step 3 \
+#--retrieval_type dense \
+#--max_length 128 \
+#--retriever \
+#--cache
 
-## Latency: 69.88+-0.524424213505028 s, Forward latency: 4.39+-0.01147581617146666 s, Retrieval latency: 65.49+-0.5130734490681549 s
+## Latency: 87.20+-1.8304597280491746 s, Forward latency: 10.94+-0.19146222392712312 s, Retrieval latency: 76.26+-1.6435051131942844 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -114,24 +114,24 @@ python -u eval_rag_serve.py \
 #--retriever \
 #--cache
 
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path web_questions \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 5 \
---stride 4 \
---spec_step 3 \
---retrieval_type dense_hnsw \
---max_length 128 \
---retriever \
---cache
+#python -u eval_rag_serve.py \
+#--model_name facebook/opt-1.3b \
+#--dataset_path web_questions \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 5 \
+#--stride 4 \
+#--spec_step 3 \
+#--retrieval_type dense_hnsw \
+#--max_length 128 \
+#--retriever \
+#--cache
 
-## Latency: 6.44+-0.44058023792536916 s, Forward latency: 5.32+-0.3492762222500654 s, Retrieval latency: 1.11+-0.09365335346210954 s
+## Latency: 13.44+-0.37540151390163784 s, Forward latency: 12.16+-0.339741552912616 s, Retrieval latency: 1.28+-0.03735757937093578 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -143,24 +143,24 @@ python -u eval_rag_serve.py \
 #--retriever \
 #--cache
 
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path web_questions \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 5 \
---stride 4 \
---spec_step 3 \
---retrieval_type sparse \
---max_length 128 \
---retriever \
---cache
+#python -u eval_rag_serve.py \
+#--model_name facebook/opt-1.3b \
+#--dataset_path web_questions \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 5 \
+#--stride 4 \
+#--spec_step 3 \
+#--retrieval_type sparse \
+#--max_length 128 \
+#--retriever \
+#--cache
 
-## Latency: 5.30+-0.9548729532710574 s, Forward latency: 2.67+-0.4035941256609728 s, Retrieval latency: 2.63+-0.5598446134732815 s
+# Latency: 11.02+-0.31818711699179236 s, Forward latency: 8.21+-0.19069163060389233 s, Retrieval latency: 2.81+-0.14209414135674842 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -174,7 +174,7 @@ python -u eval_rag_serve.py \
 
 ### Dense + web_questions, SpecRet+P ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
@@ -186,12 +186,12 @@ python -u eval_rag_serve.py \
 --max_length 128 \
 --retriever \
 --cache \
---cache_update_width 256
+--cache_update_width 20
 
-## Latency: 65.22+-0.7999048996250347 s, Forward latency: 4.11+-0.08401188092862445 s, Retrieval latency: 61.11+-0.7171867018201786 s
+## Latency: 84.23+-0.3724108292627405 s, Forward latency: 10.56+-0.047126174163530724 s, Retrieval latency: 73.67+-0.32528732967392937 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -205,7 +205,7 @@ python -u eval_rag_serve.py \
 #--cache_update_width 256
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
@@ -217,12 +217,12 @@ python -u eval_rag_serve.py \
 --max_length 128 \
 --retriever \
 --cache \
---cache_update_width 256
+--cache_update_width 20
 
-## Latency: 5.97+-0.4686247189426058 s, Forward latency: 4.93+-0.3664791790070576 s, Retrieval latency: 1.04+-0.1021960687684187 s
+## Latency: 13.45+-0.2839540788721633 s, Forward latency: 12.10+-0.2532162219000207 s, Retrieval latency: 1.36+-0.0319183273620084 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -236,7 +236,7 @@ python -u eval_rag_serve.py \
 #--cache_update_width 256
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
@@ -248,12 +248,12 @@ python -u eval_rag_serve.py \
 --max_length 128 \
 --retriever \
 --cache \
---cache_update_width 256
+--cache_update_width 20
 
-## Latency: 7.16+-1.3475575474589736 s, Forward latency: 4.42+-0.7154428274984118 s, Retrieval latency: 2.74+-0.6321283462840437 s
+## Latency: 11.04+-0.22422512635046288 s, Forward latency: 8.27+-0.14822203898312275 s, Retrieval latency: 2.77+-0.12960081622327937 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -269,24 +269,24 @@ python -u eval_rag_serve.py \
 
 ### Dense + web_questions, SpecRet+S ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
 --trial_num 3 \
 --stride 4 \
---spec_step 3 \
+--spec_step 1 \
 --retrieval_type dense \
 --max_length 128 \
 --retriever \
 --cache \
 --adapt_spec_step
 
-## Latency: 59.43+-1.0084340661392268 s, Forward latency: 5.62+-0.1102363025451929 s, Retrieval latency: 53.82+-0.904395214478259 s
+## Latency: 88.95+-0.9935877305215245 s, Forward latency: 12.62+-0.1012168939654808 s, Retrieval latency: 76.33+-0.985722762170671 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -300,24 +300,24 @@ python -u eval_rag_serve.py \
 #--adapt_spec_step
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
---spec_step 3 \
+--spec_step 1 \
 --retrieval_type dense_hnsw \
 --max_length 128 \
 --retriever \
 --cache \
 --adapt_spec_step
 
-## Latency: 5.10+-0.02917168260254886 s, Forward latency: 4.09+-0.006471637373849628 s, Retrieval latency: 1.01+-0.024624584178803775 s
+## Latency: 8.08+-0.07795173454802423 s, Forward latency: 7.15+-0.06418641914384947 s, Retrieval latency: 0.93+-0.016113063227568804 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -331,24 +331,24 @@ python -u eval_rag_serve.py \
 #--adapt_spec_step
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
---spec_step 3 \
+--spec_step 1 \
 --retrieval_type sparse \
 --max_length 128 \
 --retriever \
 --cache \
 --adapt_spec_step
 
-## Latency: 5.65+-0.9280434213345485 s, Forward latency: 2.69+-0.3639299939684509 s, Retrieval latency: 2.97+-0.5641607905576959 s
+# Latency: 10.19+-0.1933310021268212 s, Forward latency: 6.48+-0.059907716341198236 s, Retrieval latency: 3.71+-0.1507358811479094 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -363,25 +363,25 @@ python -u eval_rag_serve.py \
 
 
 ### Dense + web_questions, SpecRet+A ########################
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path web_questions \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 3 \
---stride 4 \
---spec_step 3 \
---retrieval_type dense \
---max_length 128 \
---retriever \
---cache \
---async_retrieval
+#python -u eval_rag_serve.py \
+#--model_name facebook/opt-1.3b \
+#--dataset_path web_questions \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 3 \
+#--stride 4 \
+#--spec_step 3 \
+#--retrieval_type dense \
+#--max_length 128 \
+#--retriever \
+#--cache \
+#--async_retrieval
 
-## Latency: 69.36+-0.6095261491371016 s, Forward latency: 4.34+-0.06441651979200744 s, Retrieval latency: 65.67+-0.5702995445934411 s
+## Latency: 85.74+-1.9456388665357232 s, Forward latency: 10.91+-0.13267200077536878 s, Retrieval latency: 75.80+-1.7892406068696647 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -394,25 +394,25 @@ python -u eval_rag_serve.py \
 #--cache \
 #--async_retrieval
 
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path web_questions \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 5 \
---stride 4 \
---spec_step 3 \
---retrieval_type dense_hnsw \
---max_length 128 \
---retriever \
---cache \
---async_retrieval
+#python -u eval_rag_serve.py \
+#--model_name facebook/opt-1.3b \
+#--dataset_path web_questions \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 5 \
+#--stride 4 \
+#--spec_step 3 \
+#--retrieval_type dense_hnsw \
+#--max_length 128 \
+#--retriever \
+#--cache \
+#--async_retrieval
 
-## Latency: 6.49+-0.3800465639094446 s, Forward latency: 5.71+-0.356587990622311 s, Retrieval latency: 1.15+-0.04988049482854489 s
+## Latency: 13.28+-0.17767210287876872 s, Forward latency: 12.23+-0.1733229755201617 s, Retrieval latency: 1.29+-0.01621748154955401 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -425,25 +425,25 @@ python -u eval_rag_serve.py \
 #--cache \
 #--async_retrieval
 
-python -u eval_rag_serve.py \
---model_name gpt2-medium \
---dataset_path web_questions \
---dataset_split validation \
---output_dir ./results \
---gpu_id 1 \
---trial_num 5 \
---stride 4 \
---spec_step 3 \
---retrieval_type sparse \
---max_length 128 \
---retriever \
---cache \
---async_retrieval
+#python -u eval_rag_serve.py \
+#--model_name facebook/opt-1.3b \
+#--dataset_path web_questions \
+#--dataset_split validation \
+#--output_dir ./results \
+#--gpu_id 1 \
+#--trial_num 5 \
+#--stride 4 \
+#--spec_step 3 \
+#--retrieval_type sparse \
+#--max_length 128 \
+#--retriever \
+#--cache \
+#--async_retrieval
 
-## Latency: 4.99+-0.863221406777742 s, Forward latency: 2.72+-0.345384308467972 s, Retrieval latency: 2.80+-0.591235562327138 s
+## Latency: 10.66+-0.12037866903162557 s, Forward latency: 8.43+-0.09056789749689967 s, Retrieval latency: 2.91+-0.07891911944664473 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -458,26 +458,26 @@ python -u eval_rag_serve.py \
 
 ### Dense + web_questions, SpecRet+PSA ########################
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
 --trial_num 3 \
 --stride 4 \
---spec_step 3 \
+--spec_step 1 \
 --retrieval_type dense \
 --max_length 128 \
 --retriever \
 --cache \
---cache_update_width 256 \
+--cache_update_width 20 \
 --adapt_spec_step \
 --async_retrieval
 
-## Latency: 53.36+-1.0808824660443943 s, Forward latency: 5.18+-0.11571677743958084 s, Retrieval latency: 48.60+-0.9701172694959648 s
+## Latency: 85.81+-1.8209944315470203 s, Forward latency: 12.34+-0.26190467231983494 s, Retrieval latency: 74.40+-1.5391183671559023 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -493,26 +493,26 @@ python -u eval_rag_serve.py \
 #--async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
---spec_step 3 \
+--spec_step 1 \
 --retrieval_type dense_hnsw \
 --max_length 128 \
 --retriever \
 --cache \
---cache_update_width 256 \
+--cache_update_width 20 \
 --adapt_spec_step \
 --async_retrieval
 
-## Latency: 3.81+-0.02415293926048724 s, Forward latency: 3.49+-0.017006102550875705 s, Retrieval latency: 0.87+-0.026260708610321287 s
+## Latency: 7.84+-0.1522240399643951 s, Forward latency: 7.32+-0.1294600465894575 s, Retrieval latency: 1.12+-0.05852521148326578 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \
@@ -528,26 +528,26 @@ python -u eval_rag_serve.py \
 #--async_retrieval
 
 python -u eval_rag_serve.py \
---model_name gpt2-medium \
+--model_name facebook/opt-1.3b \
 --dataset_path web_questions \
 --dataset_split validation \
 --output_dir ./results \
 --gpu_id 1 \
 --trial_num 5 \
 --stride 4 \
---spec_step 3 \
+--spec_step 1 \
 --retrieval_type sparse \
 --max_length 128 \
 --retriever \
 --cache \
---cache_update_width 256 \
+--cache_update_width 20 \
 --adapt_spec_step \
 --async_retrieval
 
-## Latency: 6.50+-1.3902486770147273 s, Forward latency: 4.16+-0.7605507835895247 s, Retrieval latency: 4.08+-0.9019197133158195 s
+## Latency: 8.18+-0.10971554501686263 s, Forward latency: 6.13+-0.020525724341983815 s, Retrieval latency: 4.32+-0.11341655489729895 s
 
 #python -u eval_rag_serve.py \
-#--model_name gpt2-medium \
+#--model_name facebook/opt-1.3b \
 #--dataset_path web_questions \
 #
 #--dataset_split validation \

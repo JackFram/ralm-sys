@@ -195,7 +195,7 @@ python -u eval_rag_serve.py \
 --cache \
 --cache_update_width 20
 
-## Latency: 85.65+-1.4679475148397012 s, Forward latency: 15.21+-0.3037526657836349 s, Retrieval latency: 70.44+-1.3157098931174318 s
+## Latency: 81.86+-0.7657852861740794 s, Forward latency: 10.41+-0.11412921459287349 s, Retrieval latency: 71.45+-0.6521488771902965 s
 
 #python -u eval_rag_serve.py \
 #--model_name meta-llama/Llama-2-7b-hf \
@@ -227,7 +227,7 @@ python -u eval_rag_serve.py \
 --cache \
 --cache_update_width 20
 
-## Latency: 21.04+-0.43113111554197503 s, Forward latency: 18.08+-0.36865468679084573 s, Retrieval latency: 2.96+-0.06251074458636281 s
+## Latency: 14.21+-0.3036432984864429 s, Forward latency: 12.76+-0.27434968413086236 s, Retrieval latency: 1.44+-0.02993763694040956 s
 
 #python -u eval_rag_serve.py \
 #--model_name meta-llama/Llama-2-7b-hf \
@@ -259,7 +259,7 @@ python -u eval_rag_serve.py \
 --cache \
 --cache_update_width 20
 
-## Latency: 12.60+-0.3632230404116292 s, Forward latency: 9.59+-0.27813057503087063 s, Retrieval latency: 3.01+-0.09405831511787942 s
+## Latency: 10.66+-0.23700390701833846 s, Forward latency: 8.04+-0.09540831375125369 s, Retrieval latency: 2.62+-0.18304896016454794 s
 
 #python -u eval_rag_serve.py \
 #--model_name meta-llama/Llama-2-7b-hf \
@@ -293,7 +293,7 @@ python -u eval_rag_serve.py \
 --cache \
 --adapt_spec_step
 
-## Latency: 81.40+-3.8296845146142244 s, Forward latency: 12.58+-0.9335077791941658 s, Retrieval latency: 68.82+-2.898562876533452 s
+## Latency: 84.28+-2.93988453280129 s, Forward latency: 11.99+-0.28312023587880436 s, Retrieval latency: 72.28+-2.672796204589914 s
 
 #python -u eval_rag_serve.py \
 #--model_name meta-llama/Llama-2-7b-hf \
@@ -325,7 +325,7 @@ python -u eval_rag_serve.py \
 --cache \
 --adapt_spec_step
 
-## Latency: 9.36+-0.07490257019892703 s, Forward latency: 8.22+-0.06266938169290918 s, Retrieval latency: 1.15+-0.014287151024657215 s
+## Latency: 8.16+-0.09966282290644442 s, Forward latency: 7.20+-0.08332370731805508 s, Retrieval latency: 0.96+-0.027852311266824973 s
 
 #python -u eval_rag_serve.py \
 #--model_name meta-llama/Llama-2-7b-hf \
@@ -357,7 +357,7 @@ python -u eval_rag_serve.py \
 --cache \
 --adapt_spec_step
 
-# Latency: 10.56+-0.10819918177662895 s, Forward latency: 6.78+-0.03618373542091434 s, Retrieval latency: 3.77+-0.09111099375467997 s
+# Latency: 10.18+-0.0877560909082933 s, Forward latency: 6.43+-0.02769151354992203 s, Retrieval latency: 3.74+-0.07795372580140514 s
 
 #python -u eval_rag_serve.py \
 #--model_name meta-llama/Llama-2-7b-hf \
@@ -488,7 +488,7 @@ python -u eval_rag_serve.py \
 --adapt_spec_step \
 --async_retrieval
 
-## Latency: 73.64+-0.8001201831076963 s, Forward latency: 15.04+-0.09668571099207439 s, Retrieval latency: 60.14+-0.6480014378713791 s
+## Latency: 82.03+-2.7398756477835566 s, Forward latency: 12.00+-0.22612486674241747 s, Retrieval latency: 70.98+-2.557707528829578 s
 
 #python -u eval_rag_serve.py \
 #--model_name meta-llama/Llama-2-7b-hf \
@@ -524,7 +524,7 @@ python -u eval_rag_serve.py \
 --adapt_spec_step \
 --async_retrieval
 
-## 12.94+-0.03750147942253118 s, Forward latency: 11.07+-0.060694441973933824 s, Retrieval latency: 3.71+-0.024503560718402758 s
+## Latency: 7.91+-0.03873930449013175 s, Forward latency: 7.35+-0.035455502282286264 s, Retrieval latency: 1.14+-0.024710051908193406 s
 
 #python -u eval_rag_serve.py \
 #--model_name meta-llama/Llama-2-7b-hf \
@@ -560,7 +560,7 @@ python -u eval_rag_serve.py \
 --adapt_spec_step \
 --async_retrieval
 
-## Latency: 9.36+-0.16416645024414367 s, Forward latency: 7.52+-0.058157379911027506 s, Retrieval latency: 4.50+-0.16388856832914686 s
+## Latency: 8.09+-0.1865906611880987 s, Forward latency: 6.14+-0.08953771211415568 s, Retrieval latency: 4.41+-0.14062663626193833 s
 
 #python -u eval_rag_serve.py \
 #--model_name meta-llama/Llama-2-7b-hf \
