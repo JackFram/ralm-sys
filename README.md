@@ -46,6 +46,7 @@ python -u eval_rag_serve.py \
 
 ### Evaluate RaLMSpec with Optimal Speculation Stride:
 To run RaLMSpec with  Optimal Speculation Stride enabled, use the following command:
+```bash
 python -u eval_rag_serve.py \
 --model_name $MODEL_NAME \
 --dataset_path $DATASET \
@@ -60,9 +61,11 @@ python -u eval_rag_serve.py \
 --retriever \
 --cache \
 --adapt_spec_step
+```
 
 ### Evaluate RaLMSpec with  Asynchronous Verification:
 To run RaLMSpec with  Asynchronous Verification enabled, use the following command:
+```bash
 python -u eval_rag_serve.py \
 --model_name $MODEL_NAME \
 --dataset_path $DATASET \
@@ -77,6 +80,7 @@ python -u eval_rag_serve.py \
 --retriever \
 --cache \
 --async_retrieval
+```
 
 ### Evaluate RaLMSpec with Prefetch, Asynchronous Verification, and Optimal Speculation Stride:
 To run RaLMSpec with all functionalities, use the following command:
