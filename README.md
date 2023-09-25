@@ -6,6 +6,99 @@ To overcome the overhead challenges associated with iterative RaLM, we introduce
 
 By incorporating additional features such as prefetching, an optimal speculation stride scheduler, and asynchronous verification, RaLMSpec maximizes its potential for accelerating RaLM workflows.
 
+## How to Run RaLMSpec
+### Evaluate RaLMSpec:
+To run RaLMSpec without any special features enabled, use the following command:
+```bash
+python -u eval_rag_serve.py \
+--model_name $MODEL_NAME \
+--dataset_path $DATASET \
+--dataset_split validation \
+--output_dir $OUTPUT_PATH \
+--gpu_id $HOST_GPU_ID \
+--trial_num $NUMBER_TRAIL \
+--stride 4 \
+--spec_step 3 \
+--retrieval_type $RETRIEVAL_TYPE \
+--max_length 128 \
+--retriever \
+--cache
+```
+
+### Evaluate RaLMSpec with Prefetch:
+To run RaLMSpec with Pretech enabled, use the following command:
+```bash
+python -u eval_rag_serve.py \
+--model_name $MODEL_NAME \
+--dataset_path $DATASET \
+--dataset_split validation \
+--output_dir $OUTPUT_PATH \
+--gpu_id $HOST_GPU_ID \
+--trial_num $NUMBER_TRAIL \
+--stride 4 \
+--spec_step 3 \
+--retrieval_type $RETRIEVAL_TYPE \
+--max_length 128 \
+--retriever \
+--cache \
+--cache_update_width 20
+```
+
+### Evaluate RaLMSpec with Optimal Speculation Stride:
+To run RaLMSpec with  Optimal Speculation Stride enabled, use the following command:
+python -u eval_rag_serve.py \
+--model_name $MODEL_NAME \
+--dataset_path $DATASET \
+--dataset_split validation \
+--output_dir $OUTPUT_PATH \
+--gpu_id $HOST_GPU_ID \
+--trial_num $NUMBER_TRAIL \
+--stride 4 \
+--spec_step 1 \
+--retrieval_type $RETRIEVAL_TYPE \
+--max_length 128 \
+--retriever \
+--cache \
+--adapt_spec_step
+
+### Evaluate RaLMSpec with  Asynchronous Verification:
+To run RaLMSpec with  Asynchronous Verification enabled, use the following command:
+python -u eval_rag_serve.py \
+--model_name $MODEL_NAME \
+--dataset_path $DATASET \
+--dataset_split validation \
+--output_dir $OUTPUT_PATH \
+--gpu_id $HOST_GPU_ID \
+--trial_num $NUMBER_TRAIL \
+--stride 4 \
+--spec_step 3 \
+--retrieval_type $RETRIEVAL_TYPE \
+--max_length 128 \
+--retriever \
+--cache \
+--async_retrieval
+
+### Evaluate RaLMSpec with Prefetch, Asynchronous Verification, and Optimal Speculation Stride:
+To run RaLMSpec with all functionalities, use the following command:
+```bash
+python -u eval_rag_serve.py \
+--model_name $MODEL_NAME \
+--dataset_path $DATASET \
+--dataset_split validation \
+--output_dir $OUTPUT_PATH \
+--gpu_id $HOST_GPU_ID \
+--trial_num $NUMBER_TRAIL \
+--stride 4 \
+--spec_step 1 \
+--retrieval_type $RETRIEVAL_TYPE \
+--max_length 128 \
+--retriever \
+--cache \
+--cache_update_width 20 \
+--adapt_spec_step \
+--async_retrieval
+```
+
 ## Evaluation and Conclusion
 
 Extensive evaluations were conducted using three different language models on four downstream question-answering (QA) datasets. The results demonstrate the remarkable speed-up capabilities of RaLMSpec:
