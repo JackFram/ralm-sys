@@ -24,6 +24,12 @@ python -u eval_rag_serve.py \
 --retriever \
 --cache
 ```
+In our experiments, the options of `$MODEL_NAME` are 
+- gpt2-medium
+- meta-llama/Llama-2-7b-hf
+- meta-llama/Llama-2-13b-hf
+- meta-llama/Llama-2-70b-hf (Requires 4 A100-80G GPUs)
+- facebook/opt-1.3b
 
 ### Evaluate RaLMSpec with Prefetch (P):
 To run RaLMSpec with Pretech enabled, use the following command:
@@ -102,6 +108,10 @@ python -u eval_rag_serve.py \
 --adapt_spec_step \
 --async_retrieval
 ```
+
+### Diverse workloads
+To run experiments on [Iter-Retgen](https://arxiv.org/pdf/2305.15294) and [FLARE](https://arxiv.org/pdf/2305.06983),
+simply replace `eval_rag_serve.py` with `eval_rag_serve_retgen.py` or `eval_rag_serve_active.py`.
 
 ## Evaluation
 
