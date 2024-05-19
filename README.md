@@ -103,14 +103,18 @@ python -u eval_rag_serve.py \
 --async_retrieval
 ```
 
-## Evaluation and Conclusion
+## Evaluation
 
 For document-level retrieval, extensive evaluations were conducted using three language models on four downstream QA datasets. RaLMSpec can achieve a speed-up ratio of 1.75-2.39×, 1.04-1.39×, and 1.31-1.77× when the retriever is an exact dense retriever (EDR), approximate dense retriever (ADR), and sparse retriever (SR) respectively compared with the baseline.
-![Comparison-LT](https://github.com/JackFram/ralm-sys/assets/99985904/2dafc8a1-5949-4033-8a2d-f4246b98a325)
+<p align="center">
+  <img src="https://github.com/JackFram/ralm-sys/assets/99985904/2dafc8a1-5949-4033-8a2d-f4246b98a325" width="450" />
+</p>
 
 For token-level iterative RaLM (KNN-LM) serving, RaLMSpec can achieve a speed-up ratio up to 7.59× and 2.45× compared to kNN-LMs over wiki-QA when the retriever is an exact dense and approximate dense retriever, respectively.
-![knn-lm-edr](https://github.com/JackFram/ralm-sys/assets/99985904/8dbe742e-3ab0-4313-b10a-08100cf662ab)
-![knn-lm-adr](https://github.com/JackFram/ralm-sys/assets/99985904/74b8c8a6-3e20-46c2-b4f2-618d542e7f1d)
+<p align="center">
+  <img src="https://github.com/JackFram/ralm-sys/assets/99985904/8dbe742e-3ab0-4313-b10a-08100cf662ab" width="300" />
+  <img src="https://github.com/JackFram/ralm-sys/assets/99985904/74b8c8a6-3e20-46c2-b4f2-618d542e7f1d" width="300" />
+</p>
 
 In summary, RaLMSpec offers an effective solution to enhance the efficiency of iterative RaLM approaches, making them even more powerful and practical for knowledge-intensive NLP tasks.
 
